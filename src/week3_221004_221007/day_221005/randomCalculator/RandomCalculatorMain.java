@@ -1,4 +1,4 @@
-package week3_221004_221007.day_221005;
+package week3_221004_221007.day_221005.randomCalculator;
 
 public class RandomCalculatorMain {
     public static void main(String[] args) {
