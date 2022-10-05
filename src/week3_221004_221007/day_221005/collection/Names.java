@@ -8,11 +8,11 @@ public class Names {
     private List<Student> studentObjs = new ArrayList<>();
 
     public List<Student> getStudentObjs() {
-        this.studentObjs.add(new Student(1,"권하준","https://github.com/dongyeon-0822/java-project-exercise"));
-        this.studentObjs.add(new Student(1,"조성윤","https://github.com/kang-subin/Java"));
-        this.studentObjs.add(new Student(3,"안예은","https://github.com/KoKwanwun/LikeLion.git"));
-        this.studentObjs.add(new Student(1,"남우빈","https://github.com/lcomment/Algorithm_Solution--Java/tree/main/LikeLion"));
-        this.studentObjs.add(new Student(2,"최경민","https://github.com/cmkxak/likelion-java-course"));
+        this.studentObjs.add(new Student(1,"권하준","https://www.naver.com/"));
+        this.studentObjs.add(new Student(1,"조성윤","https://www.google.co.kr/"));
+        this.studentObjs.add(new Student(3,"안예은","https://www.naver.com/"));
+        this.studentObjs.add(new Student(1,"남우빈","https://www.google.co.kr/"));
+        this.studentObjs.add(new Student(2,"최경민","https://www.naver.com/"));
 
         return studentObjs;
     }
