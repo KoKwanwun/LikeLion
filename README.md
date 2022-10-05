@@ -10,6 +10,6 @@
 ### 221005
 - `randomCalculator` : interface를 만들어 랜덤한 수, 특정한 수 생성 함수 만든 후 사칙연산(baseNum 이용한 생성자 추가)
 - Calculator, CalculatorMain : 매개 변수 2개를 이용하여 사칙연산
-- `Collection` : List를 이용하여 임의의 이름 출력
+- `Collection` : List를 이용하여 임의의 이름 출력, 5명의 정보(반, 이름, 깃주소) 출력
 
 ---
