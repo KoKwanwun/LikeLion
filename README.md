@@ -8,7 +8,7 @@
 - Even_Odd_1161 : 정수를 입력 받아 홀수 짝수 문제
 
 ### 20221005
-- randomCalculator : interface를 만들어 랜덤 수 생성 함수 만든 후 사칙연산
+- randomCalculator : interface를 만들어 랜덤한 수, 특정한 수 생성 함수 만든 후 사칙연산
 - Calculator, CalculatorMain : 매개 변수 2개를 이용하여 사칙연산
 
 ---
