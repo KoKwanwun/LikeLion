@@ -3,6 +3,13 @@ package week3_221004_221007.day_221006;
 import java.util.HashMap;
 
 public class MapExercise {
+    static boolean isAlphabet(char c){
+        if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)){
+            return true;
+        } else{
+            return false;
+        }
+    }
     public static void main(String[] args) {
         HashMap<String, String> map = new HashMap<>();
 
@@ -116,7 +123,7 @@ public class MapExercise {
         for (int i = 0; i < strs.length(); i++){
             char str = strs.charAt(i);
 
-            if ((str >= 65 && str <= 90) || (str >= 97 && str <= 122)){
+            if (isAlphabet(str)){
                 cnt = alphabetCnt.containsKey(str) ? alphabetCnt.get(str) : 0;
                 alphabetCnt.put(str, cnt + 1);
             } else {
