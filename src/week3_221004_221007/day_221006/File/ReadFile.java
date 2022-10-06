@@ -4,8 +4,12 @@ import java.io.IOException;
 
 public class ReadFile {
     public static void main(String[] args) throws IOException {
-        ReadFileOneByte readFileOneByte = new ReadFileOneByte("a_file.txt");
+        ReadFileByByte readFileByByte = new ReadFileByByte("a_file.txt");
 
-        System.out.println(readFileOneByte.readByte());
+        System.out.println(readFileByByte.readOneByte());
+
+        System.out.println(readFileByByte.readTwoByte());
+
+        System.out.println(readFileByByte.readNByte(10));
     }
 }
