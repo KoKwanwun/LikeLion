@@ -20,17 +20,20 @@ public class ReadFileByByte {
         return (char)br.read();
     }
 
-    char[] readTwoByte() throws IOException {
+    String readTwoByte() throws IOException {
         BufferedReader br = new BufferedReader(
                 new FileReader(filename),
                 16 * 1024
         );
-        char[] twoByte = new char[2];
+        String nByte = br.readLine();
 
-        twoByte[0] = (char)br.read();
-        twoByte[1] = (char)br.read();
+        int n = 2;
 
-        return twoByte;
+        if (nByte.length() < n){
+            n = nByte.length();
+        }
+
+        return nByte.substring(0,n);
     }
 
     String readNByte(int n) throws IOException {
