@@ -14,5 +14,7 @@
 
 ### 221006
 - `Student_List` : List를 활용하여 학생이름 5명 출력
+- `SetTest` : Set 테스트
+- `randomNumberSet` : 50개 랜덤한 수 생성 후 중복 제거
 
 ---
