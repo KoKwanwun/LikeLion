@@ -1,16 +1,8 @@
-package week3_221004_221007.day_221006;
+package week3_221004_221007.day_221006.MapTest;
 
 import java.util.HashMap;
 
 public class MapExercise {
-    static boolean isAlphabet(char c){
-        if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)){
-            return true;
-        } else{
-            return false;
-        }
-    }
-    
     public static void main(String[] args) {
         HashMap<String, String> map = new HashMap<>();
 
@@ -114,6 +106,7 @@ public class MapExercise {
         System.out.println("총 개수 : " + map.size());
 
         // 깃주소를 하나 가져와서 문자별로 개수 출력
+        IsAlphabet isAlphabet = new IsAlphabet();
         HashMap<Character, Integer> alphabetCnt = new HashMap<>();
         HashMap<Character, Integer> charCnt = new HashMap<>();
         int cnt = 0;
@@ -124,7 +117,7 @@ public class MapExercise {
         for (int i = 0; i < strs.length(); i++){
             char chr = strs.charAt(i);
 
-            if (isAlphabet(chr)){
+            if (isAlphabet.checkIsAlphabet(chr)){
                 cnt = alphabetCnt.containsKey(chr) ? alphabetCnt.get(chr) : 0;
                 alphabetCnt.put(chr, cnt + 1);
             } else {
