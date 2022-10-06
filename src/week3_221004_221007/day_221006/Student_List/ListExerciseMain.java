@@ -10,5 +10,7 @@ public class ListExerciseMain {
         for (String student : students) {
             System.out.println(student);
         }
+
+        System.out.println("총 이름 개수 : " + students.size());
     }
 }
