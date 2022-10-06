@@ -26,5 +26,17 @@ public class ReadFile {
         for(int i = 0; i < files.length; i++){
             System.out.println(files[i]);
         }
+        /*
+        출력 결과 (현재 디렉토리 파일 목록)
+        .\.git
+        .\.gitignore
+        .\.idea
+        .\a_file.txt
+        .\b_file.txt
+        .\LikeLion.iml
+        .\out
+        .\README.md
+        .\src
+         */
     }
 }
