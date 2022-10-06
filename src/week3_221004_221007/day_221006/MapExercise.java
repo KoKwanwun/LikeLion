@@ -121,14 +121,14 @@ public class MapExercise {
 
         System.out.println("\n권하준의 깃주소 문자별 개수 출력");
         for (int i = 0; i < strs.length(); i++){
-            char str = strs.charAt(i);
+            char chr = strs.charAt(i);
 
-            if (isAlphabet(str)){
-                cnt = alphabetCnt.containsKey(str) ? alphabetCnt.get(str) : 0;
-                alphabetCnt.put(str, cnt + 1);
+            if (isAlphabet(chr)){
+                cnt = alphabetCnt.containsKey(chr) ? alphabetCnt.get(chr) : 0;
+                alphabetCnt.put(chr, cnt + 1);
             } else {
-                cnt = charCnt.containsKey(str) ? charCnt.get(str) : 0;
-                charCnt.put(str, cnt + 1);
+                cnt = charCnt.containsKey(chr) ? charCnt.get(chr) : 0;
+                charCnt.put(chr, cnt + 1);
             }
         }
         System.out.println("알파벳별 개수 : " + alphabetCnt);
