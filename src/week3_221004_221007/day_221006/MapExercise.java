@@ -107,11 +107,12 @@ public class MapExercise {
 
         // 깃주소를 하나 가져와서 문자별로 개수 출력
         System.out.println("\n권하준의 깃주소 문자별 개수 출력");
-        HashMap<String, Integer> alphabetCnt = new HashMap<>();
-        String str = map.get("권하준");
-        for (int i = 0; i < str.length(); i++){
-            int cnt = alphabetCnt.containsKey(String.valueOf(str.charAt(i))) ? alphabetCnt.get(String.valueOf(str.charAt(i))) : 0;
-            alphabetCnt.put(String.valueOf(str.charAt(i)), cnt + 1);
+        HashMap<Character, Integer> alphabetCnt = new HashMap<>();
+        String strs = map.get("권하준");
+        for (int i = 0; i < strs.length(); i++){
+            char str = strs.charAt(i);
+            int cnt = alphabetCnt.containsKey(str) ? alphabetCnt.get(str) : 0;
+            alphabetCnt.put(str, cnt + 1);
         }
         System.out.println(alphabetCnt);
     }
