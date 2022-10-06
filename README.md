@@ -12,4 +12,7 @@
 - Calculator, CalculatorMain : 매개 변수 2개를 이용하여 사칙연산
 - `Collection` : List를 이용하여 임의의 이름 출력, 5명의 정보(반, 이름, 깃주소) 출력
 
+### 221006
+- `Student_List` : List를 활용하여 학생이름 5명 출력
+
 ---
