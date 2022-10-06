@@ -17,6 +17,6 @@
 - SetExercise : Set 테스트
 - `randomNumberSet` : 50개 랜덤한 수 생성 후 중복 제거
 - `randomAlphabetSet` : 50개 랜덤한 알파벳 생성 후 중복 제거
-- MapExercise : Map에 이름과 깃주소를 넣고 출력
+- MapExercise : Map에 이름과 깃주소를 넣고 출력 및 깃주소를 하나 가져와서 문자별로 개수 출력
 
 ---
