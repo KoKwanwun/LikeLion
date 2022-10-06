@@ -14,7 +14,7 @@ public class ReadFileOneByte {
     char readByte() throws IOException {
         BufferedReader br = new BufferedReader(
                 new FileReader(filename),
-                1
+                16 * 1024
         );
         return (char)br.read();
     }
