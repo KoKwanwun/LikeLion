@@ -106,14 +106,25 @@ public class MapExercise {
         System.out.println("총 개수 : " + map.size());
 
         // 깃주소를 하나 가져와서 문자별로 개수 출력
-        System.out.println("\n권하준의 깃주소 문자별 개수 출력");
         HashMap<Character, Integer> alphabetCnt = new HashMap<>();
+        HashMap<Character, Integer> charCnt = new HashMap<>();
+        int cnt = 0;
+
         String strs = map.get("권하준");
+
+        System.out.println("\n권하준의 깃주소 문자별 개수 출력");
         for (int i = 0; i < strs.length(); i++){
             char str = strs.charAt(i);
-            int cnt = alphabetCnt.containsKey(str) ? alphabetCnt.get(str) : 0;
-            alphabetCnt.put(str, cnt + 1);
+
+            if ((str >= 65 && str <= 90) || (str >= 97 && str <= 122)){
+                cnt = alphabetCnt.containsKey(str) ? alphabetCnt.get(str) : 0;
+                alphabetCnt.put(str, cnt + 1);
+            } else {
+                cnt = charCnt.containsKey(str) ? charCnt.get(str) : 0;
+                charCnt.put(str, cnt + 1);
+            }
         }
-        System.out.println(alphabetCnt);
+        System.out.println("알파벳별 개수 : " + alphabetCnt);
+        System.out.println("알파벳이 아닌 문자별 개수 : " + charCnt);
     }
 }
