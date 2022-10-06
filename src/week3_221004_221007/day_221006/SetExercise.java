@@ -1,4 +1,4 @@
-package week3_221004_221007.day_221006.SetTest;
+package week3_221004_221007.day_221006;
 
 import java.util.HashSet;
 import java.util.Set;
