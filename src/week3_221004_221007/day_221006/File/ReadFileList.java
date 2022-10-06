@@ -24,10 +24,23 @@ public class ReadFileList {
         return (char) fileReader.read();
     }
 
+    public String rearTwoChar(String filename) throws IOException {
+        // FileReader 설명
+        FileReader fileReader = new FileReader(filename);
+        String str = "";
+        str += (char) fileReader.read();
+        str += (char) fileReader.read();
+
+        return str;
+    }
+
     public static void main(String[] args) throws IOException {
         ReadFileList readFileList = new ReadFileList();
         char c = readFileList.rearAChar("b_file.txt");
         System.out.println(c);
+
+        String str = readFileList.rearTwoChar("b_file.txt");
+        System.out.println(str);
     }
     /*
     출력 결과 (현재 디렉토리 파일 목록)
