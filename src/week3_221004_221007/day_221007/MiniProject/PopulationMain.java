@@ -60,11 +60,12 @@ public class PopulationMain {
         // 결과를 히트맵 형식으로
         String targetFilenameForHeatmap = "each_sido_for_heatmap.txt";
         createFile.createAFile(targetFilenameForHeatmap);
+        Map<String, Integer> heatMapIdxMap = populationStatistics.heatmapIdxMap();
 
         List<String> cntResultForHeatmap = new ArrayList<>();
         for (String key : fromToList.keySet()){
             String[] strForHeatmap = key.split(",");
-            String s = String.format("[%s %s %s]\n", strForHeatmap[0], strForHeatmap[1], fromToList.get(key));
+            String s = String.format("[%s, %s, %s],\n", heatMapIdxMap.get(strForHeatmap[0]), heatMapIdxMap.get(strForHeatmap[1]), fromToList.get(key));
             cntResultForHeatmap.add(s);
         }
         createFile.write(cntResultForHeatmap, targetFilenameForHeatmap);
