@@ -29,27 +29,20 @@ public class PopulationStatistics {
         return pml;
     }
 
-    public List<String> readAllLine(String filename) {
-        // 다른 버전의 BufferedReader로 한줄씩 읽기
-        List<String> lineList = new ArrayList<>();
-
-        try(BufferedReader br = Files.newBufferedReader(
-                Paths.get(filename), StandardCharsets.UTF_8)){
-            
-            String line;
-            while ((line = br.readLine()) != null) {
-                lineList.add(line);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return lineList;
-    }
-
     public PopulationMove parse(String data){
         String[] dataSplit = data.split(",");
 
         return new PopulationMove(dataSplit[6], dataSplit[0]);  // 전입 : To, 전출 : From
+    }
+
+    public String fromToString(PopulationMove populationMove){
+        return populationMove.getFromSido() + "," + populationMove.getToSido() + "\n";
+    }
+
+    public PopulationMove newFileParse(String data){
+        String[] dataSplit = data.split(",");
+
+        return new PopulationMove(dataSplit[0], dataSplit[1]);  // 전입 : To, 전출 : From
     }
 
     public Map<Integer, Integer> HowManyFromSido(List<String> lineList, int num){
@@ -58,8 +51,8 @@ public class PopulationStatistics {
         int cnt;
 
         for (String s : lineList) {
-            populationMove = parse(s);
-            if (populationMove.getFromSido() == 11){
+            populationMove = newFileParse(s);
+            if (populationMove.getFromSido() == num){
                 int toSido = populationMove.getToSido();
                 cnt = modeSeoulToSido.containsKey(toSido) ? modeSeoulToSido.get(toSido) : 0;
                 modeSeoulToSido.put(toSido, cnt + 1);
@@ -80,21 +73,5 @@ public class PopulationStatistics {
         }
 
         return  maxKey;
-    }
-
-    public static void main(String[] args) throws IOException {
-        String address = "D:\\고관운 자료\\멋쟁이사자처럼\\수업 자료\\221007 실습 자료\\2021_인구관련연간자료_20221006_98568.csv";
-        PopulationStatistics populationStatistics = new PopulationStatistics();
-
-//        populationStatistics.readByLine2(address);
-
-        List<String> lineList;
-        lineList = populationStatistics.readAllLine(address);
-
-        Map<Integer, Integer> modeSeoulToSido = populationStatistics.HowManyFromSido(lineList, 11);
-        System.out.println(modeSeoulToSido);
-
-        int modeSido = populationStatistics.modeToSido(modeSeoulToSido);
-        System.out.println(modeSido);
     }
 }
