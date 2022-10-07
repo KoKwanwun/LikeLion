@@ -39,31 +39,66 @@ public class PopulationStatistics {
         return populationMove.getFromSido() + "," + populationMove.getToSido() + "\n";
     }
 
-    public Map<Integer, Integer> HowManyFromSido(List<PopulationMove> newPml, int num){
-        Map<Integer, Integer> modeSeoulToSido = new HashMap<>();
+    public Map<String, Integer> HowManyFromSido(List<PopulationMove> newPml){
+        Map<String, Integer> modeSeoulToSido = new HashMap<>();
         int cnt;
+        String key;
 
         for (PopulationMove s : newPml) {
-            if (s.getFromSido() == num){
+            int toSido = s.getToSido();
+            key = s.getFromSido() + "," + toSido;
+            cnt = modeSeoulToSido.containsKey(key) ? modeSeoulToSido.get(key) : 0;
+            modeSeoulToSido.put(key, cnt + 1);
+        }
+        return modeSeoulToSido;
+    }
+
+    // 오버로딩
+    public Map<String, Integer> HowManyFromSido(List<PopulationMove> newPml, int from){
+        Map<String, Integer> modeSeoulToSido = new HashMap<>();
+        int cnt;
+        String key;
+
+        for (PopulationMove s : newPml) {
+            if (s.getFromSido() == from){
                 int toSido = s.getToSido();
-                cnt = modeSeoulToSido.containsKey(toSido) ? modeSeoulToSido.get(toSido) : 0;
-                modeSeoulToSido.put(toSido, cnt + 1);
+                key = s.getFromSido() + "," + toSido;
+                cnt = modeSeoulToSido.containsKey(key) ? modeSeoulToSido.get(key) : 0;
+                modeSeoulToSido.put(key, cnt + 1);
             }
         }
         return modeSeoulToSido;
     }
 
-    public int modeToSido(Map<Integer, Integer> modeSeoulToSido){
-        int maxValue = 0;
-        int maxKey = 0;
+    // 오버로딩
+    public Map<String, Integer> HowManyFromSido(List<PopulationMove> newPml, int from, int to){
+        Map<String, Integer> modeSeoulToSido = new HashMap<>();
+        int cnt;
+        String key;
 
-        for (Integer key : modeSeoulToSido.keySet()) {
+        for (PopulationMove s : newPml) {
+            if (s.getFromSido() == from){
+                int toSido = s.getToSido();
+                if (toSido == to) {
+                    key = s.getFromSido() + "," + toSido;
+                    cnt = modeSeoulToSido.containsKey(key) ? modeSeoulToSido.get(key) : 0;
+                    modeSeoulToSido.put(key, cnt + 1);
+                }
+            }
+        }
+        return modeSeoulToSido;
+    }
+    public String modeToSido(Map<String, Integer> modeSeoulToSido){
+        int maxValue = 0;
+        String maxKey = "";
+
+        for (String key : modeSeoulToSido.keySet()) {
             if(modeSeoulToSido.get(key) > maxValue){
                 maxValue = modeSeoulToSido.get(key);
                 maxKey = key;
             }
         }
 
-        return  maxKey;
+        return maxKey;
     }
 }
