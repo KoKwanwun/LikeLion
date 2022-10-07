@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PopulationStatistics {
-        public List<PopulationMove> readByLine(String filename) throws IOException {
+        public List<PopulationMove> readByLine(String filename, int from, int to) throws IOException {
         // String을 PopulationMove로 parsing하여 pml에 add합니다.
         List<PopulationMove> pml = new ArrayList<>();
         BufferedReader bufferedReader = new BufferedReader(
@@ -22,38 +22,30 @@ public class PopulationStatistics {
         String str;
         while((str = bufferedReader.readLine()) != null){
 //            System.out.println(str);
-            PopulationMove pm = parse(str);
+            PopulationMove pm = parse(str, from, to);
             pml.add(pm);
         }
         bufferedReader.close();
         return pml;
     }
 
-    public PopulationMove parse(String data){
+    public PopulationMove parse(String data, int from, int to){
         String[] dataSplit = data.split(",");
 
-        return new PopulationMove(dataSplit[6], dataSplit[0]);  // 전입 : To, 전출 : From
+        return new PopulationMove(dataSplit[from], dataSplit[to]);  // 전입 : To, 전출 : From
     }
 
     public String fromToString(PopulationMove populationMove){
         return populationMove.getFromSido() + "," + populationMove.getToSido() + "\n";
     }
 
-    public PopulationMove newFileParse(String data){
-        String[] dataSplit = data.split(",");
-
-        return new PopulationMove(dataSplit[0], dataSplit[1]);  // 전입 : To, 전출 : From
-    }
-
-    public Map<Integer, Integer> HowManyFromSido(List<String> lineList, int num){
-        PopulationMove populationMove;
+    public Map<Integer, Integer> HowManyFromSido(List<PopulationMove> newPml, int num){
         Map<Integer, Integer> modeSeoulToSido = new HashMap<>();
         int cnt;
 
-        for (String s : lineList) {
-            populationMove = newFileParse(s);
-            if (populationMove.getFromSido() == num){
-                int toSido = populationMove.getToSido();
+        for (PopulationMove s : newPml) {
+            if (s.getFromSido() == num){
+                int toSido = s.getToSido();
                 cnt = modeSeoulToSido.containsKey(toSido) ? modeSeoulToSido.get(toSido) : 0;
                 modeSeoulToSido.put(toSido, cnt + 1);
             }
