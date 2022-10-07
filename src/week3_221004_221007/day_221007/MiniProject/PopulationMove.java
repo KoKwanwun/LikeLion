@@ -10,6 +10,12 @@ public class PopulationMove {
         this.toSido = toSido;
     }
 
+    // 생성자 추가(오버로딩)
+    public PopulationMove(String fromSido, String toSido) {
+        this.fromSido = Integer.parseInt(fromSido);
+        this.toSido = Integer.parseInt(toSido);
+    }
+
     // getter 추가
     public int getFromSido() {
         return fromSido;

@@ -7,7 +7,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PopulationStatistics {
     public void readByChar(String filename) throws IOException {
@@ -69,14 +71,11 @@ public class PopulationStatistics {
     public PopulationMove parse(String data){
         String[] dataSplit = data.split(",");
 
-        int fromSido = Integer.parseInt(dataSplit[0]);
-        int toSido = Integer.parseInt(dataSplit[6]);
-
-        return new PopulationMove(fromSido, toSido);
+        return new PopulationMove(dataSplit[6], dataSplit[0]);  // 전입 : To, 전출 : From
     }
 
     public static void main(String[] args) throws IOException {
-        String address = "./src/week3_221004_221007/day_221007/MiniProject/2021_인구관련연간자료_20221006_98568.csv";
+        String address = "D:\\고관운 자료\\멋쟁이사자처럼\\수업 자료\\221007 실습 자료\\2021_인구관련연간자료_20221006_98568.csv";
         PopulationStatistics populationStatistics = new PopulationStatistics();
 
 //        populationStatistics.readByLine(address);
@@ -85,10 +84,28 @@ public class PopulationStatistics {
         List<String> lineList = new ArrayList<>();
         lineList = populationStatistics.readAllLine(address);
         PopulationMove populationMove;
+        Map<Integer, Integer> modeSeoulToSido = new HashMap<>();
+        int cnt;
 
         for (String s : lineList) {
             populationMove = populationStatistics.parse(s);
-
+            if (populationMove.getFromSido() == 11){
+                int toSido = populationMove.getToSido();
+                cnt = modeSeoulToSido.containsKey(toSido) ? modeSeoulToSido.get(toSido) : 0;
+                modeSeoulToSido.put(toSido, cnt + 1);
+            }
         }
+        System.out.println(modeSeoulToSido);
+
+        int maxValue = 0;
+        int maxKey = 0;
+
+        for (Integer key : modeSeoulToSido.keySet()) {
+            if(modeSeoulToSido.get(key) > maxValue){
+                maxValue = modeSeoulToSido.get(key);
+                maxKey = key;
+            }
+        }
+        System.out.println(maxKey);
     }
 }
