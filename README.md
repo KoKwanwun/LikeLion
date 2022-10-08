@@ -1,4 +1,30 @@
 # LikeLion
+**멋쟁이사자처럼 활동내용**
+
+<img src="https://img.shields.io/badge/Java-007396?style=plastic&logo=java&logoColor=white"><br>
+
+<img src="LIKELION_Image.png">
+
+## Contents
+<details>
+<summary>Week4 (221011 ~ 221014)</summary>
+
+## Week4 (221011 ~ 221014)
+### 221011 ()
+
+### 221012 ()
+
+### 221013 ()
+
+### 221014 ()
+
+</details>
+
+---
+
+<details>
+<summary>Week3 (221004 ~ 221007)</summary>
+
 ## Week3 (221004 ~ 221007)
 ### 221004 (Array)
 - HelloWorld : Hello World 출력
@@ -37,4 +63,7 @@
   ◻ 히트맵을 위한 데이터 전처리 후 히트맵 그리기<br>
 - ReadFile : 파일 읽어서 출력
 
+</details>
+
 ---
+
