@@ -10,9 +10,8 @@
 <summary>Week4 (221011 ~ 221014)</summary>
 
 ## Week4 (221011 ~ 221014)
-### 221011 (알고리즘)
-- `Algorithm`<br>
-◻ Programmers_12931 : 자릿수 더하기<br>
+### 221011 (알고리즘, Docker, MySQL)
+- Programmers_12931 : 자릿수 더하기
 
 ### 221012 ()
 
