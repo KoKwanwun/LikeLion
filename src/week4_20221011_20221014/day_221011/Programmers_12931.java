@@ -1,4 +1,4 @@
-package week4_20221011_20221014.day_221011.Algorithm;
+package week4_20221011_20221014.day_221011;
 
 public class Programmers_12931 {
     public int solutionA(int n) {
