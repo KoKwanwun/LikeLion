@@ -13,7 +13,14 @@
 ### 221011 (알고리즘, Docker, MySQL)
 - Programmers_12931 : 자릿수 더하기
 
-### 221012 ()
+### 221012 (csv parser)
+- `domain`<br>
+  ◻ Hospital : 데이터를 저장할 클래스 정의
+- `parser`<br>
+  ◻ Parser : T를 리턴하는 parse 함수를 가지고 있는 interface (HospitalParser처럼 응용가능)<br>
+  ◻ HospitalParser : 파일은 ,로 분리 후 0인덱스 값을 Hospital 형태로 리턴
+- LineReader : 각 줄을 읽어 T 형태로 리턴
+- Main : 서울시 병의원 위치 정보.csv를 가져와 사이즈와 id 출력
 
 ### 221013 ()
 
