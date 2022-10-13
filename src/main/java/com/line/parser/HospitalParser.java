@@ -16,6 +16,7 @@ public class HospitalParser implements Parser<Hospital> {
 
     @Override
     public Hospital parse(String str) {
+        // "에 대한 에러 방지
         str = str.replaceAll("\"", "");
         String[] splitted = str.split(",");
 

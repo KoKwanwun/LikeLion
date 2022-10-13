@@ -4,6 +4,7 @@ import com.line.domain.Hospital;
 import com.line.parser.HospitalParser;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -14,11 +15,12 @@ public class Main {
 
         System.out.println(hospitals.size());
 
+        List<String> lines = new ArrayList<>();
         for (Hospital hospital : hospitals) {
-            System.out.printf("%s %s %s %s %d %s %s",
-                    hospital.getId(), hospital.getAddress(), hospital.getDistrict(),
-                    hospital.getCategory(), hospital.getEmergencyRoom(), hospital.getName(),
-                    hospital.getSubdivision());
+            lines.add(hospital.getSqlInsertQuery());
         }
+        String sqlFilename = "hospital_insert.sql";
+        hospitalLineReader.createANewFile(sqlFilename);
+        hospitalLineReader.writeLines(lines, sqlFilename);
     }
 }
