@@ -15,9 +15,12 @@ class HospitalParserTest {
     void hospitalParsing() {
         HospitalParser hospitalParser = new HospitalParser();
         // ctrl + tab
-        Hospital hospital = hospitalParser.parse(this.line1);Assertions.assertEquals("A1120837", hospital.getId());
+        Hospital hospital = hospitalParser.parse(this.line1);
 
-        // 주소가 잘 파싱되는지 테스트 추가
+        // Id 파싱 확인
+        Assertions.assertEquals("A1120837", hospital.getId());
+
+        // Address 파싱 확인
         String address = "서울특별시 금천구 벚꽃로 286 삼성리더스타워 111~114호 (가산동)";
         Assertions.assertEquals(address, hospital.getAddress());
 

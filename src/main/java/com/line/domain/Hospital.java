@@ -9,11 +9,6 @@ public class Hospital {
     private String name;
     private String subdivision;
 
-
-    public Hospital(String id) {
-        this.id = id;
-    }
-
     public Hospital(String id, String address) {
         this.id = id;
         this.address = address;
@@ -25,5 +20,25 @@ public class Hospital {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getEmergencyRoom() {
+        return emergencyRoom;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSubdivision() {
+        return subdivision;
     }
 }
