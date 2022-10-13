@@ -23,8 +23,8 @@
 - Main : 서울시 병의원 위치 정보.csv를 가져와 사이즈와 id 출력
 
 ### 221013 (SelectionSort)
-- `selectionsort`<br>
-  ◻ SelectionSort01 : 선택 정렬 알고리즘
+- `bubblesort`<br>
+  ◻ BubbleSort01 : 버블 정렬 알고리즘(앞에서부터 값 고정)
 
 ### 221014 ()
 
