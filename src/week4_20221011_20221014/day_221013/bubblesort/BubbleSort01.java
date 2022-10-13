@@ -1,11 +1,13 @@
 package week4_20221011_20221014.day_221013.bubblesort;
 
+import java.util.Arrays;
+
 public class BubbleSort01 {
     int[] sort(int[] arr) {
         int temp;
 
         for(int i = 0; i < arr.length; i++) {
-            for(int j = i+1; j < arr.length; j++) {
+            for(int j = i + 1; j < arr.length; j++) {
                 if(arr[i] > arr[j]){
                     // swap
                     temp = arr[i];
@@ -24,8 +26,6 @@ public class BubbleSort01 {
         BubbleSort01 bubbleSort01 = new BubbleSort01();
         int[] resultArr = bubbleSort01.sort(arr);
 
-        for (int i : resultArr) {
-            System.out.println(i);
-        }
+        System.out.println(Arrays.toString(resultArr));
     }
 }
