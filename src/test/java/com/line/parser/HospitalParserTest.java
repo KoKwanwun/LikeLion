@@ -35,5 +35,8 @@ class HospitalParserTest {
 
         // Name 파싱 확인
         Assertions.assertEquals("가산기대찬의원", hospital.getName());
+
+        // Subdivision 파싱 확인
+        Assertions.assertEquals(null, hospital.getSubdivision());
     }
 }
