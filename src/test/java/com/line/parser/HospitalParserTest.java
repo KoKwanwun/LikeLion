@@ -12,7 +12,7 @@ class HospitalParserTest {
     // annotation
     @Test
     @DisplayName("test doing well parse id")
-    void name() {
+    void idParsing() {
         HospitalParser hospitalParser = new HospitalParser();
         // ctrl + tab
         Hospital hospital = hospitalParser.parse(this.line1);
