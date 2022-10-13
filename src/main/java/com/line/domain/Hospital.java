@@ -27,6 +27,19 @@ public class Hospital {
         this.subdivision = subdivision;
     }
 
+    public String getSqlInsertQuery() {
+        this.address = this.address.replace("'", "");
+        String query = "INSERT INTO `likelion-db`.`seoul_hospital` (`id`,`address`,`district`,`category`,`emergency_room`,`name`,`subdivision`) " +
+                "VALUES (\"" + this.id + "\",\"" + this.address + "\",\"" + this.district + "\",\"" + this.category + "\"," +
+                this.emergencyRoom + ",\"" + this.name + "\",";
+        if(this.subdivision != null) {
+            query += "\"" + this.subdivision + "\");";
+        } else {
+            query += "\");";
+        }
+        return query;
+    }
+
     public String getId() {
         return id;
     }
