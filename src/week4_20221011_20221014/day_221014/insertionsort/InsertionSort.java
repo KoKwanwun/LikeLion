@@ -3,15 +3,17 @@ package week4_20221011_20221014.day_221014.insertionsort;
 import java.util.Arrays;
 
 public class InsertionSort {
-    int[] sort(int[] arr) {
-        int tmp;
+    void swap(int[] arr, int a, int b) {
+        int tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
+    }
 
+    int[] sort(int[] arr) {
         for (int i = 1; i < arr.length; i++){
             for (int j = i; j > 0; j--){
                 if(arr[j] < arr[j-1]){
-                    tmp = arr[j];
-                    arr[j] = arr[j-1];
-                    arr[j-1] = tmp;
+                    swap(arr, j, j-1);
                 } else{
                     break;
                 }
