@@ -22,11 +22,15 @@
 - LineReader : 각 줄을 읽어 T 형태로 리턴
 - Main : 서울시 병의원 위치 정보.csv를 가져와 사이즈와 id 출력
 
-### 221013 (SelectionSort)
+### 221013 (SelectionSort, .sql 형식으로 데이터 전처리)
 - `bubblesort`<br>
   ◻ BubbleSort01 : 버블 정렬 알고리즘(앞에서부터 값 고정)
+- LikeLion-gradle Repository : .sql 형식으로 데이터 전처리 후 MySQL에 불러오기
 
-### 221014 ()
+### 221014 (InsertionSort)
+- `insertionsort`<br>
+  ◻ InsertionSort : 삽입 정렬 알고리즘(1번 인덱스에 해당하는 값부터 위치를 찾아가는 알고리즘)
+
 
 </details>
 
