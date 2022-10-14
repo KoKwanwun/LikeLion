@@ -35,6 +35,14 @@ public class Hospital {
         return query;
     }
 
+    public String getSqlInsertQuery2() {
+        this.address = this.address.replace("'", "");
+        String query = String.format("INSERT INTO `likelion-db`.`seoul_hospital` (`id`,`address`,`district`,`category`,`emergency_room`,`name`,`subdivision`) " +
+                "VALUES (\"%s\",\"%s\",\"%s\",\"%s\",%d,\"%s\",\"%s\");", this.id, this.address, this.district, this.category,
+                this.emergencyRoom, this.name, this.subdivision);
+        return query;
+    }
+
     public String getId() {
         return id;
     }
