@@ -2,7 +2,7 @@ package week4_20221011_20221014.day_221014.insertionsort;
 
 import java.util.Arrays;
 
-public class InsertionSort {
+public class InsertionSort01 {
     void swap(int[] arr, int a, int b) {
         int tmp = arr[a];
         arr[a] = arr[b];
@@ -27,9 +27,9 @@ public class InsertionSort {
     public static void main(String[] args) {
         int[] arr = new int[]{8, 5, 6, 2, 4};
 
-        InsertionSort insertionSort = new InsertionSort();
+        InsertionSort01 insertionSort01 = new InsertionSort01();
 
-        int[] resultArr = insertionSort.sort(arr);
+        int[] resultArr = insertionSort01.sort(arr);
 
         // 배열 형태로 출력
         System.out.println(Arrays.toString(resultArr));
