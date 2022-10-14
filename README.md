@@ -29,7 +29,7 @@
 
 ### 221014 (InsertionSort)
 - `insertionsort`<br>
-  ◻ InsertionSort01 : 삽입 정렬 알고리즘(1번 인덱스에 해당하는 값부터 위치를 찾아가는 알고리즘)<br>
+  ◻ InsertionSort01 : 삽입 정렬 알고리즘(이중 for문 사용)<br>
   ◻ InsertionSort02 : 삽입 정렬 알고리즘(재귀 함수 사용)
 
 </details>
