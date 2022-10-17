@@ -1,0 +1,12 @@
+Java-MySQL-integration/.gradle/
+Java-MySQL-integration/build/
+LikeLion-gradle/.gradle/
+LikeLion-gradle/.idea/
+Java-MySQL-integration/.idea/
+Java-MySQL-integration/out/
+LikeLion-gradle/gradle/wrapper/gradle-wrapper.jar
+LikeLion-gradle/gradle/wrapper/gradle-wrapper.properties
+Java-MySQL-integration/gradle/wrapper/gradle-wrapper.jar
+Java-MySQL-integration/gradle/wrapper/gradle-wrapper.properties
+Java-MySQL-integration/bin/
+LikeLion-gradle/bin/
