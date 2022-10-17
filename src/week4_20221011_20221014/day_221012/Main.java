@@ -4,6 +4,7 @@ import week4_20221011_20221014.day_221012.domain.Hospital;
 import week4_20221011_20221014.day_221012.parser.HospitalParser;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -14,8 +15,12 @@ public class Main {
 
         System.out.println(hospitals.size());
 
+        List<String> lines = new ArrayList<>();
         for (Hospital hospital : hospitals) {
-            System.out.println(hospital.getId());
+            lines.add(hospital.getSqlInsertQuery());
         }
+        String sqlFilename = "hospital_insert.sql";
+        hospitalLineReader.createANewFile(sqlFilename);
+        hospitalLineReader.writeLines(lines, sqlFilename);
     }
 }
