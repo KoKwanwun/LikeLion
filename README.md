@@ -7,6 +7,31 @@
 
 ## Contents
 <details>
+<summary>Week5 (221017 ~ 221021)</summary>
+
+## Week5 (221017 ~ 221021)
+### 221017 (별찍기)
+- RightTriangle (직각삼각형 별찍기)
+- Pyramid (피라미드 별찍기)
+- Rhombus (마름모 별찍기)
+
+### 221018 ()
+- 
+
+### 221019 ()
+- 
+
+### 221020 ()
+- 
+
+### 221021 ()
+- 
+
+</details>
+
+---
+
+<details>
 <summary>Week4 (221011 ~ 221014)</summary>
 
 ## Week4 (221011 ~ 221014)
