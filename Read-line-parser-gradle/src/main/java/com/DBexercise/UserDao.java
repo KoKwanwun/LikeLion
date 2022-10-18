@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class UserDao {
-    public void add() throws SQLException, ClassNotFoundException {
+    public Connection getConnection() throws ClassNotFoundException, SQLException {
         Map<String, String> env = System.getenv();
         String dbHost = env.get("DB_HOST");
         String dbName = env.get("DB_NAME");
@@ -16,6 +16,11 @@ public class UserDao {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection(dbHost, dbName, dbPassword);
+
+        return conn;
+    }
+    public void add() throws SQLException, ClassNotFoundException {
+        Connection conn = getConnection();
         PreparedStatement ps = conn.prepareStatement("INSERT INTO users(id, name, password) VALUES (?, ?, ?)");
         ps.setString(1, "3");
         ps.setString(2, "TOEIC");
@@ -27,13 +32,7 @@ public class UserDao {
     }
 
     public List<User> findAll() throws SQLException, ClassNotFoundException {
-        Map<String, String> env = System.getenv();
-        String dbHost = env.get("DB_HOST");
-        String dbName = env.get("DB_NAME");
-        String dbPassword = env.get("DB_PASSWORD");
-
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection conn = DriverManager.getConnection(dbHost, dbName, dbPassword);
+        Connection conn = getConnection();
         PreparedStatement ps = conn.prepareStatement("SELECT * from users");
         ResultSet rs = ps.executeQuery();
 
