@@ -14,12 +14,12 @@
 - RightTriangle : 직각삼각형 별찍기
 - Pyramid : 피라미드 별찍기
 - Rhombus : 마름모 별찍기
-- **Java-MySQL-integration** . `dbexercise` : 자바 DB 연동
+- **Java-MySQL-integration-gradle** . `dbexercise` : 자바 DB 연동
 
 ### 221018 (별찍기)
 - SquareStar : 정사각형 별찍기
 - RectangleStar : 직사각형 별찍기
-- **LikeLion-gradle** . `dbexercise` : 자바 DB 연동 복습
+- **Read-line-parser-gradle** . `dbexercise` : 자바 DB 연동 복습
 
 ### 221019 ()
 - 
