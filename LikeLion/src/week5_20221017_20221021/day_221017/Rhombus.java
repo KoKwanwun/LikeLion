@@ -1,4 +1,4 @@
-package week5_20221017_20221021.day_221011;
+package week5_20221017_20221021.day_221017;
 
 import java.util.Scanner;
 
