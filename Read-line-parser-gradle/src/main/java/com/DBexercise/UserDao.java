@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class UserDao {
-    public Connection getConnection() throws ClassNotFoundException, SQLException {
+
+    private Connection getConnection() throws ClassNotFoundException, SQLException {
         Map<String, String> env = System.getenv();
         String dbHost = env.get("DB_HOST");
         String dbName = env.get("DB_NAME");
