@@ -15,7 +15,12 @@ public class Stack01 {
 
     public void push(int value) {
         this.arr[this.pointer] = value;
-        this.pointer += 1;
+        this.pointer++;
+    }
+
+    public int pop() {
+        this.pointer--;
+        return this.arr[this.pointer];
     }
 
     public int[] getArr() {
@@ -26,6 +31,8 @@ public class Stack01 {
         Stack01 stack01 = new Stack01();
         stack01.push(10);
         stack01.push(20);
+        System.out.println(Arrays.toString(stack01.getArr()));
+        System.out.println(stack01.pop());
         System.out.println(Arrays.toString(stack01.getArr()));
     }
 }
