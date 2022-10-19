@@ -1,6 +1,6 @@
-package com.line;
+package likelion.line;
 
-import com.line.parser.Parser;
+import likelion.line.parser.Parser;
 
 import java.io.*;
 import java.util.ArrayList;

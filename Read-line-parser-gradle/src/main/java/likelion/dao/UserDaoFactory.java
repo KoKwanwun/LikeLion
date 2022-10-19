@@ -1,4 +1,4 @@
-package com.DAO;
+package likelion.dao;
 
 public class UserDaoFactory {
     // Factory는 조립을 해줌 - DAO에서는

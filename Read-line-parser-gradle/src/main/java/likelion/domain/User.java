@@ -1,4 +1,4 @@
-package com.DAO.domain;
+package likelion.domain;
 
 public class User {
     private String id;

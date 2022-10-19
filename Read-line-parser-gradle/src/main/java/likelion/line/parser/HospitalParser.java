@@ -1,6 +1,6 @@
-package com.line.parser;
+package likelion.line.parser;
 
-import com.line.domain.Hospital;
+import likelion.domain.Hospital;
 
 public class HospitalParser implements Parser<Hospital> {
     private String getSubdivision(String name) {

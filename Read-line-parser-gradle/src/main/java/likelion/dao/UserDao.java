@@ -1,6 +1,6 @@
-package com.DAO;
+package likelion.dao;
 
-import com.DAO.domain.User;
+import likelion.domain.User;
 
 import java.sql.*;
 import java.util.ArrayList;

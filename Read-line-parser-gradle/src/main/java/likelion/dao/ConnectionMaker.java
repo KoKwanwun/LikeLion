@@ -1,4 +1,4 @@
-package com.DAO;
+package likelion.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;

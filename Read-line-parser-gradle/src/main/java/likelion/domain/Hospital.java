@@ -1,4 +1,4 @@
-package com.line.domain;
+package likelion.domain;
 
 public class Hospital {
     private String id;
