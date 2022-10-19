@@ -12,12 +12,14 @@ public class LocalUserDaoImpl implements ConnectionMaker{
         String dbHost = env.get("DB_HOST");
         String dbName = env.get("DB_NAME");
         String dbPassword = env.get("DB_PASSWORD");
+        Connection conn;
 
         try {
-            Connection conn = DriverManager.getConnection(dbHost, dbName, dbPassword);
+            conn = DriverManager.getConnection(dbHost, dbName, dbPassword);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new IllegalStateException(e);
         }
+        return conn;
     }
 }
