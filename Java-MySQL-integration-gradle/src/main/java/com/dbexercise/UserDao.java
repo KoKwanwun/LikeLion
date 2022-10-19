@@ -8,18 +8,18 @@ import java.util.List;
 import java.util.Map;
 
 public class UserDao {
-    private AwsConnectionMaker awsConnectionMaker;
+    private ConnectionMaker connectionMaker;
 
     public UserDao(){
-        awsConnectionMaker = new AwsConnectionMaker();
+        connectionMaker = new AwsConnectionMaker();
     }
 
-    public UserDao(AwsConnectionMaker awsConnectionMaker) {
-        this.awsConnectionMaker = awsConnectionMaker;
+    public UserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
     }
 
     public void add() throws ClassNotFoundException, SQLException {
-        Connection conn = awsConnectionMaker.getConnection();
+        Connection conn = connectionMaker.getConnection();
         // 쿼리 직접 작성
         PreparedStatement ps = conn.prepareStatement("INSERT INTO users(id, name, password) VALUES (?, ?, ?)");
         // 각각의 값을 넣기
@@ -34,7 +34,7 @@ public class UserDao {
     }
 
     public User get(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = awsConnectionMaker.getConnection();
+        Connection conn = connectionMaker.getConnection();
         // Select문 실행
         PreparedStatement ps = conn.prepareStatement("SELECT * from users where id = 1");
 
@@ -51,7 +51,7 @@ public class UserDao {
     }
 
     public User findbyId(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = awsConnectionMaker.getConnection();
+        Connection conn = connectionMaker.getConnection();
         PreparedStatement ps = conn.prepareStatement("SELECT * from users where id = ?");
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
@@ -68,7 +68,7 @@ public class UserDao {
     }
 
     public List<User> findAll() throws SQLException, ClassNotFoundException {
-        Connection conn = awsConnectionMaker.getConnection();
+        Connection conn = connectionMaker.getConnection();
         // Select문 실행
         PreparedStatement ps = conn.prepareStatement("SELECT * from users");
 

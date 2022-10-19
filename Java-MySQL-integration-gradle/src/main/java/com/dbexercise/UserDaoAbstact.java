@@ -9,7 +9,7 @@ import java.util.Map;
 
 public abstract class UserDaoAbstact {
 
-    public abstract Connection getConnection() throws ClassNotFoundException, SQLException ;
+    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 
     public void add() throws ClassNotFoundException, SQLException {
         Connection conn = getConnection();
