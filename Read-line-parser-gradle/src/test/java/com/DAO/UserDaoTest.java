@@ -9,17 +9,10 @@ import java.sql.SQLException;
 class UserDaoTest {
     @Test
     void addAndSelect() throws SQLException, ClassNotFoundException {
-        UserDao userDao = new UserDao(new AwsConnectionMaker());
-        User user = new User("10", "Lotto", "6666");
-//        userDao.add(user);
+//        UserDao userDao = new UserDao(new AwsConnectionMaker());
+        // 위의 코드를 Factory를 적용
+        UserDao userDao = new UserDaoFactory().awsUserDao();
 
-        User selectedUser = userDao.findbyId("10");
-        Assertions.assertEquals("Lotto", selectedUser.getName());
-    }
-
-    @Test
-    void addAndSelectAws() throws SQLException, ClassNotFoundException {
-        AWSUserDaoImpl userDao = new AWSUserDaoImpl();
         User user = new User("10", "Lotto", "6666");
 //        userDao.add(user);
 
