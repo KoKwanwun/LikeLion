@@ -9,9 +9,9 @@ import java.util.List;
 
 public class ParserMain {
     public static void main(String[] args) throws IOException {
-        LineReader<Hospital> hospitalLineReader = new LineReader<>(new HospitalParser());
+        FileController<Hospital> hospitalFileController = new FileController<>(new HospitalParser());
         String filename = "D:\\고관운 자료\\멋쟁이사자처럼\\백엔드스쿨 2기 교본\\220919\\4주차\\서울시 병의원 위치 정보.csv";
-        List<Hospital> hospitals = hospitalLineReader.readlines(filename);
+        List<Hospital> hospitals = hospitalFileController.readlines(filename);
 
         System.out.println(hospitals.size());
 
@@ -20,7 +20,7 @@ public class ParserMain {
             lines.add(hospital.getSqlInsertQuery());
         }
         String sqlFilename = "hospital_insert.sql";
-        hospitalLineReader.createANewFile(sqlFilename);
-        hospitalLineReader.writeLines(lines, sqlFilename);
+        hospitalFileController.createANewFile(sqlFilename);
+        hospitalFileController.writeLines(lines, sqlFilename);
     }
 }
