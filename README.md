@@ -21,7 +21,7 @@
 - RectangleStar : 직사각형 별찍기
 - **Read-line-parser-gradle** . `dao` : 리펙토링 - 추상 클래스, Class 분리, 인터페이스 도입
 
-### 221019 (Stack, 리펙토링 - Factory 적용, Spring 적용, deleteAll, getCount 추가)
+### 221019 (Stack, 리펙토링 - Interface 도입 이해, Factory 적용, Spring 적용, deleteAll, getCount 추가)
 - `stack` : Stack 구현
 - **Read-line-parser-gradle** . `dao` : 리펙토링 - Factory 적용, Spring 적용, deleteAll, getCount 추가
 
