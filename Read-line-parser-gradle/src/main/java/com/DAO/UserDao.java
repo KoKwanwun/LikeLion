@@ -8,20 +8,20 @@ import java.util.List;
 
 public class UserDao {
 
-    private AwsConnectionMaker awsConnectionMaker;
+    private ConnectionMaker connectionMaker;
 
     // 매개 변수가 없다면 새로 생성하고
     // 받은 매개 변수가 있다면 awsConnectionMaker에 할당
     public UserDao() {
-        this.awsConnectionMaker = new AwsConnectionMaker();
+        this.connectionMaker = new AwsConnectionMaker();
     }
 
-    public UserDao(AwsConnectionMaker awsConnectionMaker) {
-        this.awsConnectionMaker = awsConnectionMaker;
+    public UserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
     }
 
     public void add(User user) throws SQLException, ClassNotFoundException {
-        Connection conn = awsConnectionMaker.getConnection();
+        Connection conn = connectionMaker.getConnection();
         PreparedStatement ps = conn.prepareStatement("INSERT INTO users(id, name, password) VALUES (?, ?, ?)");
         ps.setString(1, user.getId());
         ps.setString(2, user.getName());
@@ -33,7 +33,7 @@ public class UserDao {
     }
 
     public User findbyId(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = awsConnectionMaker.getConnection();
+        Connection conn = connectionMaker.getConnection();
         PreparedStatement ps = conn.prepareStatement("SELECT * from users where id = ?");
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
@@ -50,7 +50,7 @@ public class UserDao {
     }
 
     public List<User> findAll() throws SQLException, ClassNotFoundException {
-        Connection conn = awsConnectionMaker.getConnection();
+        Connection conn = connectionMaker.getConnection();
         PreparedStatement ps = conn.prepareStatement("SELECT * from users");
         ResultSet rs = ps.executeQuery();
 
