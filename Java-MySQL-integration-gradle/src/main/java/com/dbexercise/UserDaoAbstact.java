@@ -7,19 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class UserDao {
-    private AwsConnectionMaker awsConnectionMaker;
+public abstract class UserDaoAbstact {
 
-    public UserDao(){
-        awsConnectionMaker = new AwsConnectionMaker();
-    }
-
-    public UserDao(AwsConnectionMaker awsConnectionMaker) {
-        this.awsConnectionMaker = awsConnectionMaker;
-    }
+    public abstract Connection getConnection() throws ClassNotFoundException, SQLException ;
 
     public void add() throws ClassNotFoundException, SQLException {
-        Connection conn = awsConnectionMaker.getConnection();
+        Connection conn = getConnection();
         // 쿼리 직접 작성
         PreparedStatement ps = conn.prepareStatement("INSERT INTO users(id, name, password) VALUES (?, ?, ?)");
         // 각각의 값을 넣기
@@ -34,7 +27,7 @@ public class UserDao {
     }
 
     public User get(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = awsConnectionMaker.getConnection();
+        Connection conn = getConnection();
         // Select문 실행
         PreparedStatement ps = conn.prepareStatement("SELECT * from users where id = 1");
 
@@ -50,25 +43,8 @@ public class UserDao {
         return user;
     }
 
-    public User findbyId(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = awsConnectionMaker.getConnection();
-        PreparedStatement ps = conn.prepareStatement("SELECT * from users where id = ?");
-        ps.setString(1, id);
-        ResultSet rs = ps.executeQuery();
-
-        rs.next();
-
-        User user = new User(rs.getString("id"), rs.getString("name"), rs.getString("password"));
-
-        rs.close();
-        ps.close();
-        conn.close();
-
-        return user;
-    }
-
     public List<User> findAll() throws SQLException, ClassNotFoundException {
-        Connection conn = awsConnectionMaker.getConnection();
+        Connection conn = getConnection();
         // Select문 실행
         PreparedStatement ps = conn.prepareStatement("SELECT * from users");
 
@@ -86,19 +62,5 @@ public class UserDao {
         conn.close();
 
         return userList;
-    }
-
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao userDao = new UserDao();
-//        userDao.add();
-        User user = userDao.get("1");
-        System.out.println(user.getName());
-
-        List<User> userList = userDao.findAll();
-        for (User eachUser : userList) {
-            System.out.println("ID : " + eachUser.getId());
-            System.out.println("NAME : " + eachUser.getName());
-            System.out.println("PASSWORD : " + eachUser.getPassword());
-        }
     }
 }
