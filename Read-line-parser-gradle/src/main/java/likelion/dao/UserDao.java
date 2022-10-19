@@ -67,15 +67,29 @@ public class UserDao {
         return userList;
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao userDao = new UserDao();
-        userDao.add(new User("7", "Eclipse", "880"));
+    public void deleteAll() throws SQLException, ClassNotFoundException {
+        Connection conn = connectionMaker.getConnection();
 
-        List<User> userList = userDao.findAll();
-        for (User user : userList) {
-            System.out.println("ID : " + user.getId());
-            System.out.println("NAME : " + user.getName());
-            System.out.println("PASSWORD : " + user.getPassword());
-        }
+        PreparedStatement ps = conn.prepareStatement("DELETE FROM users");
+        ps.executeUpdate();
+
+        ps.close();
+        conn.close();
+    }
+
+    public int getCount() throws SQLException, ClassNotFoundException {
+        Connection conn = connectionMaker.getConnection();
+
+        PreparedStatement ps = conn.prepareStatement("SELECT count(*) FROM users");
+
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        int count = rs.getInt(1);
+
+        rs.close();
+        ps.close();
+        conn.close();
+
+        return count;
     }
 }

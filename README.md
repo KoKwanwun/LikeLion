@@ -14,15 +14,16 @@
 - RightTriangle : 직각삼각형 별찍기
 - Pyramid : 피라미드 별찍기
 - Rhombus : 마름모 별찍기
-- **Java-MySQL-integration-gradle** . `dbexercise` : 자바 DB 연동
+- **Java-MySQL-integration-gradle** . `dao` : 자바 DB 연동
 
-### 221018 (별찍기)
+### 221018 (별찍기, 리펙토링 - 추상 클래스, Class 분리, 인터페이스 도입)
 - SquareStar : 정사각형 별찍기
 - RectangleStar : 직사각형 별찍기
-- **Read-line-parser-gradle** . `dbexercise` : 자바 DB 연동 복습
+- **Read-line-parser-gradle** . `dao` : 리펙토링 - 추상 클래스, Class 분리, 인터페이스 도입
 
-### 221019 ()
-- 
+### 221019 (Stack, 리펙토링 - Factory 적용, Spring 적용, deleteAll, getCount 추가)
+- `stack` : Stack 구현
+- **Read-line-parser-gradle** . `dao` : 리펙토링 - Factory 적용, Spring 적용, deleteAll, getCount 추가
 
 ### 221020 ()
 - 
@@ -47,8 +48,8 @@
 - `parser`<br>
   ◻ Parser : T를 리턴하는 parse 함수를 가지고 있는 interface (HospitalParser처럼 응용가능)<br>
   ◻ HospitalParser : 파일은 ,로 분리 후 0인덱스 값을 Hospital 형태로 리턴
-- LineReader : 각 줄을 읽어 T 형태로 리턴
-- Main : 서울시 병의원 위치 정보.csv를 가져와 사이즈와 id 출력
+- FileController : 각 줄을 읽어 T 형태로 리턴
+- ParserMain : 서울시 병의원 위치 정보.csv를 가져와 사이즈와 id 출력
 
 ### 221013 (SelectionSort, .sql 형식으로 데이터 전처리)
 - `bubblesort`<br>
@@ -59,7 +60,7 @@
 - `insertionsort`<br>
   ◻ InsertionSort01 : 삽입 정렬 알고리즘(이중 for문 사용)<br>
   ◻ InsertionSort02 : 삽입 정렬 알고리즘(재귀 함수 사용)
-- **LikeLion-gradle** . `line` : 병원 데이터 파싱하여 전처리 후, DB에 넣기
+- **Read-line-parser-gradle** . `line` : 병원 데이터 파싱하여 전처리 후, DB에 넣기
 
 </details>
 
