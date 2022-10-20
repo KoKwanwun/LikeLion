@@ -1,17 +1,27 @@
-package likelion.dao;
+package week5_221017_221021.day_221020.dao;
 
-import likelion.domain.User;
+import week5_221017_221021.day_221020.domain.User;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class UserDaoAbstract {
+public class UserDao {
+    private ConnectionMaker connectionMaker;
 
-    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
+    public UserDao() {
+        connectionMaker = new AwsConnectionMaker();
+    }
+
+    public UserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
+    }
 
     public void add(User user) throws SQLException, ClassNotFoundException {
-        Connection conn = getConnection();
+        Connection conn = connectionMaker.getConnection();
         PreparedStatement ps = conn.prepareStatement("INSERT INTO users(id, name, password) VALUES (?, ?, ?)");
         ps.setString(1, user.getId());
         ps.setString(2, user.getName());
@@ -23,7 +33,7 @@ public abstract class UserDaoAbstract {
     }
 
     public User findbyId(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = getConnection();
+        Connection conn = connectionMaker.getConnection();
         PreparedStatement ps = conn.prepareStatement("SELECT * from users where id = ?");
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
@@ -40,7 +50,7 @@ public abstract class UserDaoAbstract {
     }
 
     public List<User> findAll() throws SQLException, ClassNotFoundException {
-        Connection conn = getConnection();
+        Connection conn = connectionMaker.getConnection();
         PreparedStatement ps = conn.prepareStatement("SELECT * from users");
         ResultSet rs = ps.executeQuery();
 
@@ -57,15 +67,29 @@ public abstract class UserDaoAbstract {
         return userList;
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-//        UserDaoAbstract userDao = new UserDaoAbstract();
-//        userDao.add(new User("7", "Eclipse", "880"));
-//
-//        List<User> userList = userDao.findAll();
-//        for (User user : userList) {
-//            System.out.println("ID : " + user.getId());
-//            System.out.println("NAME : " + user.getName());
-//            System.out.println("PASSWORD : " + user.getPassword());
-//        }
+    public void deleteAll() throws SQLException, ClassNotFoundException {
+        Connection conn = connectionMaker.getConnection();
+
+        PreparedStatement ps = conn.prepareStatement("DELETE FROM users");
+        ps.executeUpdate();
+
+        ps.close();
+        conn.close();
+    }
+
+    public int getCount() throws SQLException, ClassNotFoundException {
+        Connection conn = connectionMaker.getConnection();
+
+        PreparedStatement ps = conn.prepareStatement("SELECT count(*) FROM users");
+
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        int count = rs.getInt(1);
+
+        rs.close();
+        ps.close();
+        conn.close();
+
+        return count;
     }
 }

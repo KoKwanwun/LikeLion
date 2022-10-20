@@ -1,21 +1,19 @@
-package likelion.dao;
+package week5_221017_221021.day_221020.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Map;
 
-public class AWSUserDaoImpl extends UserDaoAbstract{
+public class AwsConnectionMaker implements ConnectionMaker{
     @Override
-    public Connection getConnection() throws ClassNotFoundException, SQLException {
+    public Connection getConnection() throws SQLException {
         Map<String, String> env = System.getenv();
         String dbHost = env.get("DB_HOST");
         String dbName = env.get("DB_NAME");
         String dbPassword = env.get("DB_PASSWORD");
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection(dbHost, dbName, dbPassword);
-
         return conn;
     }
 }
