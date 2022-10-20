@@ -24,15 +24,11 @@ public class Stack {
     }
 
     public int pop(){
-//        if(isEmpty()){
-//            System.out.println("Array is Empty");
-//            return 0;
-//        }
         this.top--;
         return this.arr[this.top];
     }
 
-//    public boolean isEmpty(){
-//        return top == 0 ? true : false;
-//    }
+    public boolean isEmpty() {
+        return this.top == 0 ? true : false;
+    }
 }
