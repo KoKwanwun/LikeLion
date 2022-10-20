@@ -70,28 +70,63 @@ public class UserDao {
     }
 
     public void deleteAll() throws SQLException, ClassNotFoundException {
-        Connection conn = connectionMaker.getConnection();
+        Connection conn = null;
+        PreparedStatement ps = null;
 
-        PreparedStatement ps = conn.prepareStatement("DELETE FROM users");
-        ps.executeUpdate();
-
-        ps.close();
-        conn.close();
+        try{
+            conn = connectionMaker.getConnection();
+        } catch (SQLException e) {
+            throw e;
+        } finally {     // error가 나도 실행되는 블럭
+            if(ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                }
+            }
+            if(conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
     }
 
     public int getCount() throws SQLException, ClassNotFoundException {
-        Connection conn = connectionMaker.getConnection();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-        PreparedStatement ps = conn.prepareStatement("SELECT count(*) FROM users");
+        try {
+            conn = connectionMaker.getConnection();
 
-        ResultSet rs = ps.executeQuery();
-        rs.next();
-        int count = rs.getInt(1);
+            ps = conn.prepareStatement("SELECT count(*) FROM users");
 
-        rs.close();
-        ps.close();
-        conn.close();
-
-        return count;
+            rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                }
+            }
+            if(ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                }
+            }
+            if(conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
     }
 }
