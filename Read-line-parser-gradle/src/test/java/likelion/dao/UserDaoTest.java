@@ -1,10 +1,12 @@
 package likelion.dao;
 
 import likelion.domain.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -18,10 +20,15 @@ class UserDaoTest {
 
     @Autowired
     ApplicationContext context;
+    UserDao userDao;
+
+    @BeforeEach
+    void setUp() {
+        userDao = context.getBean("awsUserDao", UserDao.class);
+    }
 
     @Test
     void addAndGet() throws SQLException, ClassNotFoundException {
-        UserDao userDao = context.getBean("awsUserDao", UserDao.class);
         User user1 = new User("1", "박성철", "1234");
         User user2 = new User("2", "이길원", "2345");
 
@@ -38,7 +45,6 @@ class UserDaoTest {
 
     @Test
     void count() throws SQLException, ClassNotFoundException {
-        UserDao userDao = context.getBean("awsUserDao", UserDao.class);
         User user1 = new User("1", "박성철", "1234");
         User user2 = new User("2", "이길원", "2345");
         User user3 = new User("3", "박범진", "3456");
@@ -54,5 +60,12 @@ class UserDaoTest {
 
         userDao.add(user3);
         assertEquals(3, userDao.getCount());
+    }
+
+    @Test
+    void findById(){
+        assertThrows(EmptyResultDataAccessException.class, ()->{
+            userDao.findbyId("30");
+        });
     }
 }
