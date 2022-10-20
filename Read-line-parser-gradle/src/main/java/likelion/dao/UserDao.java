@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
-
     private ConnectionMaker connectionMaker;
 
     // 매개 변수가 없다면 새로 생성하고
