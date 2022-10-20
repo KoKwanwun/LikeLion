@@ -1,16 +1,16 @@
 package stack_221020;
 
-import java.util.Arrays;
+import java.util.EmptyStackException;
 
-public class Stack {
+public class Stack02 {
     private Integer[] arr;
     private int top = 0;
 
-    public Stack() {
+    public Stack02() {
         this.arr = new Integer[10000];
     }
 
-    public Stack(int size) {
+    public Stack02(int size) {
         this.arr = new Integer[size];
     }
 
@@ -24,6 +24,9 @@ public class Stack {
     }
 
     public int pop(){
+        if(this.isEmpty()){
+            throw new EmptyStackException();
+        }
         this.top--;
         return this.arr[this.top];
     }
