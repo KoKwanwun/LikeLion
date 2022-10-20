@@ -1,4 +1,4 @@
-package stack_221020;
+package week5_221017_221021.day_221020.stack;
 
 import java.util.EmptyStackException;
 
@@ -33,5 +33,10 @@ public class Stack02 {
 
     public boolean isEmpty() {
         return this.top == 0 ? true : false;
+    }
+
+    public int peek() {
+        if(isEmpty()) throw new EmptyStackException();
+        return this.arr[this.top - 1];
     }
 }

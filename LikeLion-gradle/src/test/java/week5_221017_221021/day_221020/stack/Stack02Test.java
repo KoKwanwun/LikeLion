@@ -1,4 +1,4 @@
-package stack_221020;
+package week5_221017_221021.day_221020.stack;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,6 +50,18 @@ class Stack02Test {
         assertFalse(st.isEmpty());
         st.pop();
         assertTrue(st.isEmpty());
+    }
+
+    @Test
+    void peek() {
+        Stack02 st = new Stack02();
+        // stack이 비었는데 peek()할때
+        assertThrows(EmptyStackException.class, ()->{
+            st.peek();
+        });
+        st.push(10);
+        int peeked = st.peek();
+        assertEquals(10, peeked);
     }
 
     @Test
