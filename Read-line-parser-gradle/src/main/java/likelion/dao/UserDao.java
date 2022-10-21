@@ -69,13 +69,13 @@ public class UserDao {
         return userList;
     }
 
-    public void deleteAll() throws SQLException, ClassNotFoundException {
+    public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException, ClassNotFoundException {
         Connection conn = null;
         PreparedStatement ps = null;
 
         try{
             conn = connectionMaker.getConnection();
-            ps = new DeleteAllStrategy().makePreparedStatement(conn);
+            ps = stmt.makePreparedStatement(conn);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -93,6 +93,13 @@ public class UserDao {
                 }
             }
         }
+    }
+
+    public void deleteAll() throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        jdbcContextWithStatementStrategy(new DeleteAllStrategy());
     }
 
     public int getCount() throws SQLException, ClassNotFoundException {
