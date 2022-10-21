@@ -14,7 +14,7 @@
 - RightTriangle : 직각삼각형 별찍기
 - Pyramid : 피라미드 별찍기
 - Rhombus : 마름모 별찍기
-- **Java-MySQL-integration-gradle** . `dao` : 자바 DB 연동
+- **Read-line-parser-gradle** . `dao` : 자바 DB 연동
 
 ### 221018 (별찍기, 리펙토링 - 추상 클래스, Class 분리, 인터페이스 도입)
 - SquareStar : 정사각형 별찍기
@@ -23,13 +23,17 @@
 
 ### 221019 (Stack, 리펙토링 - Interface 도입 이해, Factory 적용, Spring 적용, deleteAll, getCount 추가)
 - `stack` : Stack 구현
-- **Read-line-parser-gradle** . `dao` : 리펙토링 - Factory 적용, Spring 적용, deleteAll, getCount 추가
+- **Read-line-parser-gradle** . `dao` : 리펙토링 - Factory 적용, Spring 적용
 
-### 221020 ()
-- 
+### 221020 (Stack, DAO 복습)
+- **LikeLion-gradle** . `stack` : Stack 기능 및 테스트 추가 (isEmpty, peek)
+- **LikeLion-gradle** . `dao` : DAO 복습(221019 내용)
+- **Read-line-parser-gradle** . `dao` : deleteAll, getCount 메소드 및 테스트 추가, findById 예외처리, 테스트 코드에 @BeforeEach추가
 
-### 221021 ()
-- 
+### 221021 (괄호 풀기 알고리즘, 인터페이스를 활용한 코드 개선 - try/catch 중복 제거)
+- **LikeLion-gradle** . `stack`.`bracket : 괄호 풀기 알고리즘
+- **LikeLion-gradle** . `dao` : DAO 복습(221020 내용)
+- **Read-line-parser-gradle** . `dao` : StatementStrategy 인터페이스 생성, 인터페이스를 활용한 코드 개선(ex.jdbcContextWithStatementStrategy 사용)
 
 </details>
 
