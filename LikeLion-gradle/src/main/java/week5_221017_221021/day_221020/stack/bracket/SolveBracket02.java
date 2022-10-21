@@ -7,8 +7,6 @@ public class SolveBracket02 {
     private Stack<Character> stack = new Stack<>();
 
     boolean solution(String s) {
-        SolveBracket02 solution = new SolveBracket02();
-
         for (int i = 0; i < s.length(); i++) {
             if('(' == s.charAt(i)){
                 stack.push(s.charAt(i));
