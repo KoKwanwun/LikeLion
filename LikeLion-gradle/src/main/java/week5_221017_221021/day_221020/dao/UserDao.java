@@ -1,5 +1,6 @@
 package week5_221017_221021.day_221020.dao;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import week5_221017_221021.day_221020.domain.User;
 
 import java.sql.Connection;
@@ -38,13 +39,16 @@ public class UserDao {
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
 
-        rs.next();
-
-        User user = new User(rs.getString("id"), rs.getString("name"), rs.getString("password"));
+        User user = null;
+        if(rs.next()){
+            user = new User(rs.getString("id"), rs.getString("name"), rs.getString("password"));
+        }
 
         rs.close();
         ps.close();
         conn.close();
+
+        if (user == null) throw new EmptyResultDataAccessException(1);
 
         return user;
     }
@@ -68,28 +72,64 @@ public class UserDao {
     }
 
     public void deleteAll() throws SQLException, ClassNotFoundException {
-        Connection conn = connectionMaker.getConnection();
+        Connection conn = null;
+        PreparedStatement ps = null;
 
-        PreparedStatement ps = conn.prepareStatement("DELETE FROM users");
-        ps.executeUpdate();
-
-        ps.close();
-        conn.close();
+        try {
+            conn = connectionMaker.getConnection();
+            ps = conn.prepareStatement("DELETE FROM users");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if(ps != null){
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                }
+            }
+            if(conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
     }
 
     public int getCount() throws SQLException, ClassNotFoundException {
-        Connection conn = connectionMaker.getConnection();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-        PreparedStatement ps = conn.prepareStatement("SELECT count(*) FROM users");
+        try {
+            conn = connectionMaker.getConnection();
+            ps = conn.prepareStatement("SELECT count(*) FROM users");
 
-        ResultSet rs = ps.executeQuery();
-        rs.next();
-        int count = rs.getInt(1);
-
-        rs.close();
-        ps.close();
-        conn.close();
-
-        return count;
+            rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                }
+            }
+            if(ps != null){
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                }
+            }
+            if(conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
     }
 }
