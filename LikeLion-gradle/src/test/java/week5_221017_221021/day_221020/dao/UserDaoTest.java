@@ -1,10 +1,12 @@
 package week5_221017_221021.day_221020.dao;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import week5_221017_221021.day_221020.domain.User;
@@ -47,5 +49,12 @@ class UserDaoTest {
 
         User selectedUser = userDao.findbyId(user1.getId());
         assertEquals(user1.getName(), selectedUser.getName());
+    }
+
+    @Test
+    void userNull() {
+        assertThrows(EmptyResultDataAccessException.class, ()->{
+            userDao.findbyId("30");
+        });
     }
 }
