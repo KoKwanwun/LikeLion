@@ -3,21 +3,16 @@ package likelion.dao;
 import likelion.domain.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
-    private ConnectionMaker connectionMaker;
+    private final DataSource dataSource;  //DataSource를 의존하게 변경
 
-    // 매개 변수가 없다면 새로 생성하고
-    // 받은 매개 변수가 있다면 awsConnectionMaker에 할당
-    public UserDao() {
-        this.connectionMaker = new AwsConnectionMaker();
-    }
-
-    public UserDao(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    public UserDao(DataSource dataSource) {     // 생성자도 변경
+        this.dataSource = dataSource;
     }
 
     public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException, ClassNotFoundException {
@@ -25,7 +20,7 @@ public class UserDao {
         PreparedStatement ps = null;
 
         try{
-            conn = connectionMaker.getConnection();
+            conn = dataSource.getConnection();
             ps = stmt.makePreparedStatement(conn);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -47,12 +42,12 @@ public class UserDao {
     }
 
     public void add(User user) throws SQLException, ClassNotFoundException {
-        AddStrategy addStrategy = new AddStrategy(user);
-        jdbcContextWithStatementStrategy(addStrategy);
+        StatementStrategy st = new AddStrategy(user);
+        jdbcContextWithStatementStrategy(st);
     }
 
     public User findbyId(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = connectionMaker.getConnection();
+        Connection conn = dataSource.getConnection();
         PreparedStatement ps = conn.prepareStatement("SELECT * from users where id = ?");
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
@@ -71,7 +66,7 @@ public class UserDao {
     }
 
     public List<User> findAll() throws SQLException, ClassNotFoundException {
-        Connection conn = connectionMaker.getConnection();
+        Connection conn = dataSource.getConnection();
         PreparedStatement ps = conn.prepareStatement("SELECT * from users");
         ResultSet rs = ps.executeQuery();
 
@@ -98,7 +93,7 @@ public class UserDao {
         ResultSet rs = null;
 
         try {
-            conn = connectionMaker.getConnection();
+            conn = dataSource.getConnection();
 
             ps = conn.prepareStatement("SELECT count(*) FROM users");
 
