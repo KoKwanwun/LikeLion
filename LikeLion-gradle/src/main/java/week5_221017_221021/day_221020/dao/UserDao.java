@@ -1,8 +1,11 @@
 package week5_221017_221021.day_221020.dao;
 
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import week5_221017_221021.day_221020.domain.User;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,121 +14,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
-    private ConnectionMaker connectionMaker;
+    private final DataSource dataSource;
+    private final JdbcTemplate jdbcTemplate;
 
-    public UserDao() {
-        connectionMaker = new AwsConnectionMaker();
+    public UserDao(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public UserDao(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
-    }
-
-    public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException{
-        Connection conn = null;
-        PreparedStatement ps = null;
-
-        try {
-            conn = connectionMaker.getConnection();
-            ps = stmt.makePreparedStatement(conn);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            if(ps != null){
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                }
-            }
-        }
-    }
-
-    public void add(User user) throws SQLException, ClassNotFoundException {
-        jdbcContextWithStatementStrategy(new AddStrategy(user));
-    }
-
-    public User findbyId(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = connectionMaker.getConnection();
-        PreparedStatement ps = conn.prepareStatement("SELECT * from users where id = ?");
-        ps.setString(1, id);
-        ResultSet rs = ps.executeQuery();
-
-        User user = null;
-        if(rs.next()){
-            user = new User(rs.getString("id"), rs.getString("name"), rs.getString("password"));
-        }
-
-        rs.close();
-        ps.close();
-        conn.close();
-
-        if (user == null) throw new EmptyResultDataAccessException(1);
-
-        return user;
-    }
-
-    public List<User> findAll() throws SQLException, ClassNotFoundException {
-        Connection conn = connectionMaker.getConnection();
-        PreparedStatement ps = conn.prepareStatement("SELECT * from users");
-        ResultSet rs = ps.executeQuery();
-
-        List<User> userList = new ArrayList<>();
-
-        while(rs.next()){
+    RowMapper<User> rowMapper = new RowMapper<User>() {
+        @Override
+        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User(rs.getString("id"), rs.getString("name"), rs.getString("password"));
-            userList.add(user);
+            return user;
         }
-        rs.close();
-        ps.close();
-        conn.close();
+    };
 
-        return userList;
+    public void add(User user) {
+        jdbcTemplate.update("INSERT INTO users(id, name, password) values (?, ?, ?)",
+                user.getId(), user.getName(), user.getPassword());
     }
 
-    public void deleteAll() throws SQLException, ClassNotFoundException {
-        jdbcContextWithStatementStrategy(new DeleteAllStrategy());
+    public User findbyId(String id) {
+        String sql = "SELECT * from users where id = ?";
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
-    public int getCount() throws SQLException, ClassNotFoundException {
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+    public List<User> getAll() {
+        String sql = "select * from users order by id";
+        return jdbcTemplate.query(sql, rowMapper);
+    }
 
-        try {
-            conn = connectionMaker.getConnection();
-            ps = conn.prepareStatement("SELECT count(*) FROM users");
+    public void deleteAll() {
+        this.jdbcTemplate.update("delete from users");
+    }
 
-            rs = ps.executeQuery();
-            rs.next();
-            return rs.getInt(1);
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
-            if(ps != null){
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                }
-            }
-        }
+    public int getCount() {
+        return this.jdbcTemplate.queryForObject("select count(*) from users", Integer.class);
     }
 }
