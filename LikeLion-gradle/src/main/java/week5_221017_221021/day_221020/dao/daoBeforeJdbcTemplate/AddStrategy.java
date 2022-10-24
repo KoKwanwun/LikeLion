@@ -1,4 +1,4 @@
-package week5_221017_221021.day_221020.dao;
+package week5_221017_221021.day_221020.dao.daoBeforeJdbcTemplate;
 
 import week5_221017_221021.day_221020.domain.User;
 
