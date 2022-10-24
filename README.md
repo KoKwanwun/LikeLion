@@ -7,6 +7,30 @@
 
 ## Contents
 <details>
+<summary>Week6 (221024 ~ 221028)</summary>
+
+## Week6 (221024 ~ 221028)
+### 221024 (k번째 수, DataSource 인터페이스 적용, 익명클래스 도입, JdbcContext 분리, JdbcTemplate 사용)
+- **LikeLion-gradle** . `dao` : DAO 복습(221021 내용)
+- **Read-line-parser-gradle** . `dao` : DataSource 인터페이스, 익명클래스, JdbcContext, JdbcTemplate
+
+### 221025 ()
+- 
+
+### 221026 ()
+- 
+
+### 221027 ()
+- 
+
+### 221028 ()
+- 
+
+</details>
+
+---
+
+<details>
 <summary>Week5 (221017 ~ 221021)</summary>
 
 ## Week5 (221017 ~ 221021)
@@ -30,7 +54,7 @@
 - **LikeLion-gradle** . `dao` : DAO 복습(221019 내용)
 - **Read-line-parser-gradle** . `dao` : deleteAll, getCount 메소드 및 테스트 추가, findById 예외처리, 테스트 코드에 @BeforeEach추가
 
-### 221021 (괄호 풀기 알고리즘, 인터페이스를 활용한 코드 개선 - try/catch 중복 제거)
+### 221021 (괄호 풀기 알고리즘, 인터페이스를 활용한 코드 개선 - try/catch 중복 제거, jdbcContextWithStatementStrategy 사용)
 - **LikeLion-gradle** . `stack`.`bracket : 괄호 풀기 알고리즘
 - **LikeLion-gradle** . `dao` : DAO 복습(221020 내용)
 - **Read-line-parser-gradle** . `dao` : StatementStrategy 인터페이스 생성, 인터페이스를 활용한 코드 개선(ex.jdbcContextWithStatementStrategy 사용)
