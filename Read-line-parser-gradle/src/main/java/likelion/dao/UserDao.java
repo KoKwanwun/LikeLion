@@ -4,6 +4,7 @@ import likelion.domain.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -25,40 +26,15 @@ public class UserDao {
     }
 
     public User findbyId(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = dataSource.getConnection();
-        PreparedStatement ps = conn.prepareStatement("SELECT * from users where id = ?");
-        ps.setString(1, id);
-        ResultSet rs = ps.executeQuery();
-
-        User user = null;
-        if(rs.next()){
-            user = new User(rs.getString("id"), rs.getString("name"), rs.getString("password"));
-        }
-        rs.close();
-        ps.close();
-        conn.close();
-
-        if (user == null) throw new EmptyResultDataAccessException(1);
-
-        return user;
-    }
-
-    public List<User> findAll() throws SQLException, ClassNotFoundException {
-        Connection conn = dataSource.getConnection();
-        PreparedStatement ps = conn.prepareStatement("SELECT * from users");
-        ResultSet rs = ps.executeQuery();
-
-        List<User> userList = new ArrayList<>();
-
-        while(rs.next()){
-            User user = new User(rs.getString("id"), rs.getString("name"), rs.getString("password"));
-            userList.add(user);
-        }
-        rs.close();
-        ps.close();
-        conn.close();
-
-        return userList;
+        String sql = "select * from users where id = ?";
+        RowMapper<User> rowMapper = new RowMapper<User>() {
+            @Override
+            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+                User user = new User(rs.getString("id"), rs.getString("name"), rs.getString("password"));
+                return user;
+            }
+        };
+        return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
     public void deleteAll() throws SQLException, ClassNotFoundException {
@@ -66,39 +42,6 @@ public class UserDao {
     }
 
     public int getCount() throws SQLException, ClassNotFoundException {
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        try {
-            conn = dataSource.getConnection();
-
-            ps = conn.prepareStatement("SELECT count(*) FROM users");
-
-            rs = ps.executeQuery();
-            rs.next();
-            return rs.getInt(1);
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
-            if(ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                }
-            }
-        }
+        return this.jdbcTemplate.queryForObject("select count(*) from users", Integer.class);
     }
 }
