@@ -2,6 +2,8 @@ package likelion.dao;
 
 import likelion.domain.User;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -10,25 +12,16 @@ import java.util.List;
 
 public class UserDao {
     private final DataSource dataSource;  //DataSource를 의존하게 변경
-    private final JdbcContext jdbcContext;
+    private final JdbcTemplate jdbcTemplate;
 
     public UserDao(DataSource dataSource) {     // 생성자도 변경
         this.dataSource = dataSource;
-        this.jdbcContext = new JdbcContext(dataSource);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public void add(final User user) throws SQLException, ClassNotFoundException {
-        jdbcContext.workWithStatementStrategy(new StatementStrategy() {
-            @Override
-            public PreparedStatement makePreparedStatement(Connection conn) throws SQLException {
-                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users(id, name, password) VALUES (?, ?, ?)");
-                pstmt.setString(1, user.getId());
-                pstmt.setString(2, user.getName());
-                pstmt.setString(3, user.getPassword());
-
-                return pstmt;
-            }
-        });
+        jdbcTemplate.update("INSERT INTO users(id, name, password) values (?, ?, ?)",
+                user.getId(), user.getName(), user.getPassword());
     }
 
     public User findbyId(String id) throws SQLException, ClassNotFoundException {
@@ -69,7 +62,7 @@ public class UserDao {
     }
 
     public void deleteAll() throws SQLException, ClassNotFoundException {
-        this.jdbcContext.executeSql("delete from users");
+        this.jdbcTemplate.update("delete from users");
     }
 
     public int getCount() throws SQLException, ClassNotFoundException {
