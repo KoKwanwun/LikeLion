@@ -11,6 +11,7 @@
 
 ## Week6 (221024 ~ 221028)
 ### 221024 (k번째 수, DataSource 인터페이스 적용, 익명클래스 도입, JdbcContext 분리, JdbcTemplate 사용)
+- `KthNum_Programmers_42748` : K번째 수
 - **LikeLion-gradle** . `dao` : DAO 복습(221021 내용)
 - **Read-line-parser-gradle** . `dao` : DataSource 인터페이스, 익명클래스, JdbcContext, JdbcTemplate
 
