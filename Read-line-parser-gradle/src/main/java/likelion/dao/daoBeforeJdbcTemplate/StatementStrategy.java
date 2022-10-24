@@ -1,4 +1,4 @@
-package likelion.dao;
+package likelion.dao.daoBeforeJdbcTemplate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

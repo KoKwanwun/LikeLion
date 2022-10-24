@@ -1,4 +1,4 @@
-package likelion.dao.daoAbstract;
+package likelion.dao.daoBeforeJdbcTemplate.daoAbstract;
 
 import likelion.domain.User;
 
