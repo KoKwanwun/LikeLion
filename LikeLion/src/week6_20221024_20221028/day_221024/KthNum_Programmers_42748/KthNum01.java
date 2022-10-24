@@ -1,8 +1,8 @@
-package week6_20221024_20221028.day_221024;
+package week6_20221024_20221028.day_221024.KthNum_Programmers_42748;
 
 import java.util.Arrays;
 
-public class KthNUm_Programmers_42748 {
+public class KthNum01 {
     public int[] solution(int[] array, int[][] commands) {
         // commands의 길이만큼 answer 배열 생성
         int[] answer = new int[commands.length];

@@ -1,4 +1,4 @@
-package week6_20221024_20221028.day_221024;
+package week6_20221024_20221028.day_221024.KthNum_Programmers_42748;
 
 import java.util.Arrays;
 
