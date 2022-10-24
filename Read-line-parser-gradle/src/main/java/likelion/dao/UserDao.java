@@ -10,39 +10,15 @@ import java.util.List;
 
 public class UserDao {
     private final DataSource dataSource;  //DataSource를 의존하게 변경
+    private final JdbcContext jdbcContext;
 
     public UserDao(DataSource dataSource) {     // 생성자도 변경
         this.dataSource = dataSource;
-    }
-
-    public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException, ClassNotFoundException {
-        Connection conn = null;
-        PreparedStatement ps = null;
-
-        try{
-            conn = dataSource.getConnection();
-            ps = stmt.makePreparedStatement(conn);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
-        } finally {     // error가 나도 실행되는 블럭
-            if(ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                }
-            }
-        }
+        this.jdbcContext = new JdbcContext(dataSource);
     }
 
     public void add(final User user) throws SQLException, ClassNotFoundException {
-        jdbcContextWithStatementStrategy(new StatementStrategy() {
+        jdbcContext.workWithStatementStrategy(new StatementStrategy() {
             @Override
             public PreparedStatement makePreparedStatement(Connection conn) throws SQLException {
                 PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users(id, name, password) VALUES (?, ?, ?)");
@@ -93,7 +69,7 @@ public class UserDao {
     }
 
     public void deleteAll() throws SQLException, ClassNotFoundException {
-        jdbcContextWithStatementStrategy(new StatementStrategy() {
+        jdbcContext.workWithStatementStrategy(new StatementStrategy() {
             @Override
             public PreparedStatement makePreparedStatement(Connection conn) throws SQLException {
                 return conn.prepareStatement("delete from users");
