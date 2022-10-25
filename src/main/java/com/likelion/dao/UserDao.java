@@ -43,23 +43,8 @@ public class UserDao {
         }
     }
 
-    public void add(User user) {
-        try {
-            Connection c = connectionMaker.getConnection();
-
-            PreparedStatement pstmt = c.prepareStatement("INSERT INTO users(id, name, password) VALUES(?,?,?);");
-            pstmt.setString(1, user.getId());
-            pstmt.setString(2, user.getName());
-            pstmt.setString(3, user.getPassword());
-
-            pstmt.executeUpdate();
-
-            pstmt.close();
-            c.close();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public void add(User user) throws SQLException {
+        jdbcContextWithStatementStrategy(new AddStatement(user));
     }
 
     public User findById(String id) {
