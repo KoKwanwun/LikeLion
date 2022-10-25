@@ -16,6 +16,33 @@ public class UserDao {
         this.connectionMaker = connectionMaker;
     }
 
+    public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException {
+        Connection c = null;
+        PreparedStatement pstmt = null;
+        try {
+            c = connectionMaker.getConnection();
+
+            pstmt = stmt.makePreparedStatement(c);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if(pstmt != null){
+                try {
+                    pstmt.close();
+                } catch (SQLException e){
+                }
+            }
+            if(c != null){
+                try {
+                    c.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
     public void add(User user) {
         try {
             Connection c = connectionMaker.getConnection();
@@ -64,28 +91,41 @@ public class UserDao {
     }
 
     public void deleteAll() throws SQLException {
-        Connection c = connectionMaker.getConnection();
-
-        PreparedStatement pstmt = c.prepareStatement("DELETE From users");
-        pstmt.executeUpdate();
-
-        pstmt.close();
-        c.close();
+        jdbcContextWithStatementStrategy(new DeleteAllStatement());
     }
 
     public int getCount() throws SQLException {
-        Connection c = connectionMaker.getConnection();
+        Connection c = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
 
-        PreparedStatement pstmt = c.prepareStatement("select count(*) from users");
-
-        ResultSet rs = pstmt.executeQuery();
-        rs.next();
-        int count = rs.getInt(1);
-
-        rs.close();
-        pstmt.close();
-        c.close();
-
-        return count;
+        try {
+            c = connectionMaker.getConnection();
+            pstmt = c.prepareStatement("select count(*) from users");
+            rs = pstmt.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                }
+            }
+            if(pstmt != null){
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if(c != null){
+                try {
+                    c.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
     }
 }
