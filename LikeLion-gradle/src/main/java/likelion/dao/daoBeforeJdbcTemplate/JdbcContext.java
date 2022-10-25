@@ -1,4 +1,4 @@
-package week5_221017_221021.day_221020.dao.daoBeforeJdbcTemplate;
+package likelion.dao.daoBeforeJdbcTemplate;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

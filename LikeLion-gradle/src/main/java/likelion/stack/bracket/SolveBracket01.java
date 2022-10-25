@@ -1,4 +1,4 @@
-package week5_221017_221021.day_221020.stack.bracket;
+package likelion.stack.bracket;
 
 public class SolveBracket01 {
     public boolean solution(String s) {

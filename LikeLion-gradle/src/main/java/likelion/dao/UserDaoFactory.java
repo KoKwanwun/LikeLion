@@ -1,4 +1,4 @@
-package week5_221017_221021.day_221020.dao;
+package likelion.dao;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

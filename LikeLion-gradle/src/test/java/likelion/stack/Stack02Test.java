@@ -1,4 +1,4 @@
-package week5_221017_221021.day_221020.stack;
+package likelion.stack;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

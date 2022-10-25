@@ -1,4 +1,4 @@
-package week5_221017_221021.day_221020.stack;
+package likelion.stack;
 
 import java.util.EmptyStackException;
 

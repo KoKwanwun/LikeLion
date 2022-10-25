@@ -1,5 +1,6 @@
-package week5_221017_221021.day_221020.dao;
+package likelion.dao;
 
+import likelion.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import week5_221017_221021.day_221020.domain.User;
 
 import java.sql.SQLException;
 import java.util.List;

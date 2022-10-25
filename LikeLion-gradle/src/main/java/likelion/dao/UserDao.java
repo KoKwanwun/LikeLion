@@ -1,16 +1,12 @@
-package week5_221017_221021.day_221020.dao;
+package likelion.dao;
 
-import org.springframework.dao.EmptyResultDataAccessException;
+import likelion.domain.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import week5_221017_221021.day_221020.domain.User;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {

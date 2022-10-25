@@ -1,6 +1,6 @@
-package week5_221017_221021.day_221020.dao.daoBeforeJdbcTemplate;
+package likelion.dao.daoBeforeJdbcTemplate;
 
-import week5_221017_221021.day_221020.domain.User;
+import likelion.domain.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
