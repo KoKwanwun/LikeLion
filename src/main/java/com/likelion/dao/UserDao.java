@@ -3,24 +3,21 @@ package com.likelion.dao;
 import com.likelion.domain.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 public class UserDao {
-    private ConnectionMaker connectionMaker;
+    private DataSource dataSource;
 
-    public UserDao() {
-        this.connectionMaker = new AwsConnectionMaker();
-    }
-
-    public UserDao(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    public UserDao(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
     public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException {
         Connection c = null;
         PreparedStatement pstmt = null;
         try {
-            c = connectionMaker.getConnection();
+            c = dataSource.getConnection();
 
             pstmt = stmt.makePreparedStatement(c);
 
@@ -49,7 +46,7 @@ public class UserDao {
 
     public User findById(String id) {
         try {
-            Connection c = connectionMaker.getConnection();
+            Connection c = dataSource.getConnection();
 
             PreparedStatement pstmt = c.prepareStatement("SELECT * FROM users WHERE id = ?");
             pstmt.setString(1, id);
@@ -85,7 +82,7 @@ public class UserDao {
         ResultSet rs = null;
 
         try {
-            c = connectionMaker.getConnection();
+            c = dataSource.getConnection();
             pstmt = c.prepareStatement("select count(*) from users");
             rs = pstmt.executeQuery();
             rs.next();

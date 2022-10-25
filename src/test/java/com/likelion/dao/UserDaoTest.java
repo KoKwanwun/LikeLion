@@ -32,7 +32,7 @@ class UserDaoTest {
 
     @Test
     void addAndget() throws SQLException {
-        UserDao userDao = new UserDao();
+        UserDao userDao = new UserDaoFactory().awsUserDao();
 
         userDao.deleteAll();
         assertEquals(0, userDao.getCount());
