@@ -3,6 +3,7 @@ package com.likelion.dao;
 import com.likelion.domain.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -22,31 +23,16 @@ public class UserDao {
     }
 
     public User findById(String id) {
-        try {
-            Connection c = dataSource.getConnection();
-
-            PreparedStatement pstmt = c.prepareStatement("SELECT * FROM users WHERE id = ?");
-            pstmt.setString(1, id);
-
-            ResultSet rs = pstmt.executeQuery();
-
-            User user = null;
-
-            if(rs.next()) {
-                user = new User(rs.getString("id"), rs.getString("name"),
+        String sql = "SELECT * FROM users WHERE id = ?";
+        RowMapper<User> rowMapper = new RowMapper<User>() {
+            @Override
+            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+                User user = new User(rs.getString("id"), rs.getString("name"),
                         rs.getString("password"));
+                return user;
             }
-
-            rs.close();
-            pstmt.close();
-            c.close();
-
-            if(user == null) throw new EmptyResultDataAccessException(1);
-
-            return user;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        };
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
     public void deleteAll() throws SQLException {
@@ -54,37 +40,6 @@ public class UserDao {
     }
 
     public int getCount() throws SQLException {
-        Connection c = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
-        try {
-            c = dataSource.getConnection();
-            pstmt = c.prepareStatement("select count(*) from users");
-            rs = pstmt.executeQuery();
-            rs.next();
-            return rs.getInt(1);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
-            if(pstmt != null){
-                try {
-                    pstmt.close();
-                } catch (SQLException e) {
-                }
-            }
-            if(c != null){
-                try {
-                    c.close();
-                } catch (SQLException e) {
-                }
-            }
-        }
+        return this.jdbcTemplate.queryForObject("select count(*) from users", Integer.class);
     }
 }
