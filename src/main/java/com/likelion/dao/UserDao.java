@@ -2,31 +2,23 @@ package com.likelion.dao;
 
 import com.likelion.domain.User;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.sql.*;
 
 public class UserDao {
     private DataSource dataSource;
-    private JdbcContext jdbcContext;
+    private JdbcTemplate jdbcTemplate;
 
     public UserDao(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.jdbcContext = new JdbcContext(dataSource);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public void add(User user) throws SQLException {
-        this.jdbcContext.workWithStatementStrategy(new StatementStrategy() {
-            @Override
-            public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
-                PreparedStatement pstmt = c.prepareStatement("INSERT INTO users(id, name, password) VALUES(?,?,?);");
-                pstmt.setString(1, user.getId());
-                pstmt.setString(2, user.getName());
-                pstmt.setString(3, user.getPassword());
-
-                return pstmt;
-            }
-        });
+        this.jdbcTemplate.update("INSERT INTO users(id, name, password) VALUES(?,?,?);",
+                user.getId(), user.getName(), user.getPassword());
     }
 
     public User findById(String id) {
@@ -58,7 +50,7 @@ public class UserDao {
     }
 
     public void deleteAll() throws SQLException {
-        this.jdbcContext.executeQuery("delete from users");
+        this.jdbcTemplate.update("delete from users");
     }
 
     public int getCount() throws SQLException {
