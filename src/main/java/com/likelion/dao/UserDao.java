@@ -41,7 +41,17 @@ public class UserDao {
     }
 
     public void add(User user) throws SQLException {
-        jdbcContextWithStatementStrategy(new AddStatement(user));
+        jdbcContextWithStatementStrategy(new StatementStrategy() {
+            @Override
+            public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
+                PreparedStatement pstmt = c.prepareStatement("INSERT INTO users(id, name, password) VALUES(?,?,?);");
+                pstmt.setString(1, user.getId());
+                pstmt.setString(2, user.getName());
+                pstmt.setString(3, user.getPassword());
+
+                return pstmt;
+            }
+        });
     }
 
     public User findById(String id) {
@@ -73,7 +83,13 @@ public class UserDao {
     }
 
     public void deleteAll() throws SQLException {
-        jdbcContextWithStatementStrategy(new DeleteAllStatement());
+        jdbcContextWithStatementStrategy(new StatementStrategy() {
+            @Override
+            public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
+                PreparedStatement pstmt = c.prepareStatement("delete from users");
+                return pstmt;
+            }
+        });
     }
 
     public int getCount() throws SQLException {
