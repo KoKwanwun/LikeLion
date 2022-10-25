@@ -64,10 +64,27 @@ public class UserDao {
         }
     }
 
-    public static void main(String[] args) {
-        UserDao userDao = new UserDaoFactory().awsUserDao();
-//        userDao.add();
-        User user = userDao.findById("3");
-        System.out.println(user.getName());
+    public void deleteAll() throws SQLException {
+        Connection c = connectionMaker.getConnection();
+
+        PreparedStatement pstmt = c.prepareStatement("DELETE From users");
+        pstmt.executeUpdate();
+
+        pstmt.close();
+        c.close();
+    }
+
+    public void getCount() throws SQLException {
+        Connection c = connectionMaker.getConnection();
+
+        PreparedStatement pstmt = c.prepareStatement("select count(*) from users");
+
+        ResultSet rs = pstmt.executeQuery();
+        rs.next();
+        int count = rs.getInt();
+
+        rs.close();
+        pstmt.close();
+        c.close();
     }
 }
