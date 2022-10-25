@@ -8,40 +8,15 @@ import java.sql.*;
 
 public class UserDao {
     private DataSource dataSource;
+    private JdbcContext jdbcContext;
 
     public UserDao(DataSource dataSource) {
         this.dataSource = dataSource;
-    }
-
-    public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException {
-        Connection c = null;
-        PreparedStatement pstmt = null;
-        try {
-            c = dataSource.getConnection();
-
-            pstmt = stmt.makePreparedStatement(c);
-
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            if(pstmt != null){
-                try {
-                    pstmt.close();
-                } catch (SQLException e){
-                }
-            }
-            if(c != null){
-                try {
-                    c.close();
-                } catch (SQLException e) {
-                }
-            }
-        }
+        this.jdbcContext = new JdbcContext(dataSource);
     }
 
     public void add(User user) throws SQLException {
-        jdbcContextWithStatementStrategy(new StatementStrategy() {
+        this.jdbcContext.workWithStatementStrategy(new StatementStrategy() {
             @Override
             public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
                 PreparedStatement pstmt = c.prepareStatement("INSERT INTO users(id, name, password) VALUES(?,?,?);");
@@ -83,7 +58,7 @@ public class UserDao {
     }
 
     public void deleteAll() throws SQLException {
-        jdbcContextWithStatementStrategy(new StatementStrategy() {
+        this.jdbcContext.workWithStatementStrategy(new StatementStrategy() {
             @Override
             public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
                 PreparedStatement pstmt = c.prepareStatement("delete from users");
