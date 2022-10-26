@@ -17,10 +17,11 @@
 
 ### 221025 (Hash, Dao 총 복습)
 - HashFunction, HashTableFunction : Hash 알고리즘 구현
--**Toby_Spring_Final** . `dao` : Dao 총 복습
+- **Toby_Spring_Final** . `dao` : Dao 총 복습
 
-### 221026 ()
-- 
+### 221026 (Hash 충돌 방지, Spring boot 프로젝트 생성, @RestController, @RequestMapping, @GetMapping, @PathVariable)
+- HashTableFunctionImprovw : Hash 충돌 방지 구현
+- **SpringBootCoreGuide** . `controller` : @RestController, @RequestMapping, @GetMapping, @PathVariable
 
 ### 221027 ()
 - 
