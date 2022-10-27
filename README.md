@@ -23,8 +23,9 @@
 - HashTableFunctionImprovw : Hash 충돌 방지 구현
 - **SpringBootCoreGuide** . `controller` : @RestController, @RequestMapping, @GetMapping, @PathVariable
 
-### 221027 ()
-- 
+### 221027 (Hash(완주하지 못한 선수), Git Fork하는 법, GET(@RequestParam), POST(@RequestBody), Put(@ResponseEntity), Swagger)
+- `Programmers_42576` : Hahs(완주하지 못한 선수)
+- **SpringBootCoreGuide** . `controller` : GET(@RequestParam), POST(@RequestBody), Put(@ResponseEntity), Swagger
 
 ### 221028 ()
 - 
