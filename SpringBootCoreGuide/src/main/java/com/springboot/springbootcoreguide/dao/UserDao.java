@@ -34,9 +34,9 @@ public class UserDao {
                 user.getId(), user.getName(), user.getPassword());
     }
 
-    public void findById(String id) {
+    public User findById(String id) {
         String sql = "SELECT * FROM users WHERE id = ?";
-        this.jdbcTemplate.queryForObject(sql, rowMapper, id);
+        return (User) this.jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
     public List<User> getAll() {
