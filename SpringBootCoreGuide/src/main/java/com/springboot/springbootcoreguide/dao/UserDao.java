@@ -20,7 +20,7 @@ public class UserDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    RowMapper rowMapper = new RowMapper() {
+    RowMapper<User> rowMapper = new RowMapper() {
         @Override
         public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User(rs.getString("id"), rs.getString("name"),
@@ -36,7 +36,7 @@ public class UserDao {
 
     public User findById(String id) {
         String sql = "SELECT * FROM users WHERE id = ?";
-        return (User) this.jdbcTemplate.queryForObject(sql, rowMapper, id);
+        return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
     public List<User> getAll() {
