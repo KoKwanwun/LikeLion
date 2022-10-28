@@ -5,6 +5,8 @@ import com.springboot.springbootcoreguide.domain.dao.User;
 import com.springboot.springbootcoreguide.domain.dto.MemberDto;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
@@ -20,15 +22,36 @@ public class UserController {
         return String.format("%s번에 정보가 등록되었습니다.", user.getId());
     }
 
-    @DeleteMapping(value = "/user/{id}")
+    @DeleteMapping(value = "/user/delete/{id}")
     public String deleteById(@PathVariable String id) {
         userDao.deleteById(id);
         return String.format("%s번의 정보가 삭제되었습니다.", id);
     }
 
-    @DeleteMapping(value = "/user/all")
+    @DeleteMapping(value = "/user/delete/all")
     public String deleteAll() {
         userDao.deleteAll();
         return "모든 정보가 삭제되었습니다.";
+    }
+
+    @GetMapping(value = "/user/select/{id}")
+    public String selectById(@PathVariable String id) {
+        User selectedUser = userDao.findById(id);
+        return String.format("id : %s\nname : %s\npassword : %s",
+                selectedUser.getId(), selectedUser.getName(), selectedUser.getPassword());
+    }
+
+    @GetMapping(value = "/user/select/all")
+    public String selectAll() {
+        List<User> users = userDao.getAll();
+
+        String str = "";
+
+        for (User user : users) {
+            str += String.format("id : %s\nname : %s\npassword : %s\n\n",
+                    user.getId(), user.getName(), user.getPassword());
+        }
+
+        return str;
     }
 }
