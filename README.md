@@ -20,15 +20,19 @@
 - **Toby_Spring_Final** . `dao` : Dao 총 복습
 
 ### 221026 (Hash 충돌 방지, Spring boot 프로젝트 생성, @RestController, @RequestMapping, @GetMapping, @PathVariable)
-- HashTableFunctionImprovw : Hash 충돌 방지 구현
+- HashTableFunctionImprove : Hash 충돌 방지 구현
 - **SpringBootCoreGuide** . `controller` : @RestController, @RequestMapping, @GetMapping, @PathVariable
 
 ### 221027 (Hash(완주하지 못한 선수), Git Fork하는 법, GET(@RequestParam), POST(@RequestBody), Put(@ResponseEntity), Swagger)
-- `Programmers_42576` : Hahs(완주하지 못한 선수)
+- `Programmers_42576` : Hash(완주하지 못한 선수)
 - **SpringBootCoreGuide** . `controller` : GET(@RequestParam), POST(@RequestBody), Put(@ResponseEntity), Swagger
 
-### 221028 ()
-- 
+### 221028 (Hash(폰켓몬, 전화번호 목록), 로그 남기는 방법(@Slf4j, log.info), SpringBoot와 jdbcTemplate을 이용해 CRUD 구현)
+- `Programmers_1845` : Hash(폰켓몬)
+- `Programmers_42577` : Hash(전화번호 목록)
+- **SpringBootCoreGuide** . `controller`
+  - GetController : 로그 남기는 방법(@Slf4j, log.info)
+- **SpringBootCoreGuide** . UserController, UserDao, User : SpringBoot와 jdbcTemplate을 이용해 CRUD 구현
 
 </details>
 
