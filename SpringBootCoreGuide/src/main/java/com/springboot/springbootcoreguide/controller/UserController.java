@@ -22,7 +22,6 @@ public class UserController {
 
     @DeleteMapping(value = "/user/{id}")
     public String deleteById(@PathVariable String id) {
-        // deleteById 오류 수정 필요
         userDao.deleteById(id);
         return String.format("%s번의 정보가 삭제되었습니다.", id);
     }
