@@ -3,7 +3,7 @@ package week7_20221031_20221103.day_221031.Programmers_42840;
 import java.util.ArrayList;
 
 class Solution {
-    public ArrayList<Integer> solution(int[] answers) {
+    public int[] solution(int[] answers) {
         int[] person1 = {1, 2, 3, 4, 5};
         int[] person2 = {2, 1, 2, 3, 2, 4, 2, 5};
         int[] person3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
@@ -35,6 +35,11 @@ class Solution {
             }
         }
 
-        return list;
+        int[] answer = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i);
+        }
+
+        return answer;
     }
 }
