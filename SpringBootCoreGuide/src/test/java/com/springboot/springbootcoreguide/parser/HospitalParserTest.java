@@ -23,7 +23,7 @@ class HospitalParserTest {
     @Test
     @DisplayName("10만 건 이상 데이터가 파싱되는지")
     void OneHundreadThousandRows() throws IOException {
-        String filename = "D:\\고관운 자료\\멋쟁이사자처럼\\수업 자료\\fulldata_01_01_02_P_의원.csv";
+        String filename = "D:\\고관운 자료\\멋쟁이사자처럼\\수업 자료\\fulldata_01_01_02_P_의원_utf8.csv";
         List<Hospital> hospitalList = hospitalReadLineContext.readByLine(filename);
         assertTrue(hospitalList.size() > 100000);
 
