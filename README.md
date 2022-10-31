@@ -10,7 +10,7 @@
 <summary>Week7 (221031 ~ 221103)</summary>
 
 ## Week7 (221031 ~ 221103)
-### 221031 (모의고사)
+### 221031 (모의고사, Hospital 데이터 파싱)
 - `Programmers_42840` : 모의고사
 - **SpringBootCoreGuide** : Hospital 데이터 파싱
 
