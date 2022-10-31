@@ -1,6 +1,6 @@
 package com.springboot.springbootcoreguide.dao;
 
-import com.springboot.springbootcoreguide.domain.dao.User;
+import com.springboot.springbootcoreguide.domain.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;

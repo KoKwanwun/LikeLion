@@ -1,7 +1,7 @@
 package com.springboot.springbootcoreguide.controller;
 
 import com.springboot.springbootcoreguide.dao.UserDao;
-import com.springboot.springbootcoreguide.domain.dao.User;
+import com.springboot.springbootcoreguide.domain.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

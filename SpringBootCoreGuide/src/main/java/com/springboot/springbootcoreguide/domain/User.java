@@ -1,4 +1,4 @@
-package com.springboot.springbootcoreguide.domain.dao;
+package com.springboot.springbootcoreguide.domain;
 
 public class User {
     private String id;
