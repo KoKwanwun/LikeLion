@@ -35,6 +35,12 @@ class HospitalParserTest {
     }
 
     @Test
+    @DisplayName("Hospital이 getCount가 잘 되는지")
+    void getCount() {
+        System.out.println(hospitalDao.getCount());
+    }
+
+    @Test
     @DisplayName("10만 건 이상 데이터가 파싱되는지")
     void OneHundreadThousandRows() throws IOException {
         String filename = "D:\\고관운 자료\\멋쟁이사자처럼\\수업 자료\\fulldata_01_01_02_P_의원_utf8.csv";

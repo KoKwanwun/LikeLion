@@ -3,7 +3,11 @@ package com.springboot.springbootcoreguide.dao;
 import com.springboot.springbootcoreguide.domain.Hospital;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Component
 public class HospitalDao {
@@ -22,12 +26,33 @@ public class HospitalDao {
                 " ?, ?, ?," +
                 " ?, ?, ?," +
                 " ?, ?, ?," +
-                " ?);";
+                " ?);"; // 16개
         this.jdbcTemplate.update(sql, hospital.getId(), hospital.getOpenServiceName(), hospital.getOpenLocalGovernmentCode(),
                 hospital.getManagementNumber(), hospital.getLicenseDate(), hospital.getBusinessStatus(),
                 hospital.getBusinessStatusCode(), hospital.getPhone(), hospital.getFullAddress(),
                 hospital.getRoadNameAddress(), hospital.getHospitalName(), hospital.getBusinessTypeName(),
                 hospital.getHealthcareProviderCount(), hospital.getPatientRoomCount(), hospital.getTotalNumberOfBeds(),
                 hospital.getTotalAreaSize());
+    }
+
+    public int getCount() {
+        String sql = "SELECT COUNT(*) FROM nationwide_hospitals";
+        return this.jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    public void deleteAll() {
+        this.jdbcTemplate.update("DELETE FROM nationwide_hospitals");
+    }
+
+    public Hospital findById(int id) {
+        RowMapper<Hospital> rowMapper = new RowMapper<Hospital>() {
+            @Override
+            public Hospital mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Hospital hospital = new Hospital(rs.ge);
+                return hospital;
+            }
+        };
+        String sql = "SELECT * FROM nationwide_hospitals WHERE id = ?";
+        return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 }
