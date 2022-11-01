@@ -14,8 +14,9 @@
 - `Programmers_42840` : 모의고사
 - **SpringBootCoreGuide** : Hospital 데이터 파싱
 
-### 221101 ()
-- 
+### 221101 (소수찾기, Hospital add, getCount, deleteAll, findById 구현)
+- `Programmers_12921` : 소수찾기
+- - **SpringBootCoreGuide** : Hospital add, getCount, deleteAll, findById 구현
 
 ### 221102 ()
 - 
