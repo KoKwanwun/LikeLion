@@ -25,8 +25,6 @@ class HospitalParserTest {
     HospitalDao hospitalDao;    // HospitalDao가 왜 DI가 될까? -> @Autowired가 있으며, HospitalDao에 @Component가 붙어있음
                                 // Component가 있으면 @Bean을 모두 붙인다.
 
-
-
     @Test
     @DisplayName("임의의 id의 정보를 잘 불러오는지")
     void findById() {
@@ -39,6 +37,9 @@ class HospitalParserTest {
 
         Hospital selectedHospital = hospitalDao.findById(1);
         assertEquals(hospital.getHospitalName(), selectedHospital.getHospitalName());
+
+        // LocalDateTime 비교하는 방법
+        assertTrue(hospital.getLicenseDate().isEqual(selectedHospital.getLicenseDate()));
         assertEquals(hospital.getLicenseDate(), selectedHospital.getLicenseDate());
     }
 
