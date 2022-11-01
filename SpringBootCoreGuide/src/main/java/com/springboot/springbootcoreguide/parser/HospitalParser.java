@@ -1,10 +1,8 @@
 package com.springboot.springbootcoreguide.parser;
 
 import com.springboot.springbootcoreguide.domain.Hospital;
-import io.swagger.models.auth.In;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
 public class HospitalParser implements Parser<Hospital> {
     @Override
