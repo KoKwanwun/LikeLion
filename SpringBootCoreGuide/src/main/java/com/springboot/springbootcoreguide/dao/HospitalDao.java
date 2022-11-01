@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 @Component
 public class HospitalDao {
@@ -17,6 +18,16 @@ public class HospitalDao {
     public HospitalDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    RowMapper<Hospital> rowMapper = new RowMapper<Hospital>() {
+        @Override
+        public Hospital mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Hospital hospital = new Hospital(rs.getInt("id"), rs.getString("open_service_name"), rs.getInt("open_local_government_code"),
+                    rs.getString("management_number"), rs.getObject("license_date", LocalDateTime.class), rs.getInt("business_status"),  rs.getInt("business_status_code"),  rs.getString("phone"),  rs.getString("full_address"),  rs.getString("road_name_address"),
+                    rs.getString("hospital_name"),  rs.getString("business_type_name"),  rs.getInt("healthcare_provider_count"),  rs.getInt("patient_room_count"), rs.getInt("total_number_of_beds"), rs.getFloat("total_area_size"));
+            return hospital;
+        }
+    };
 
     // List<Hostpital> -- 11만건 Hospital을 하나씩 꺼내서 add에 넣기
     public void add(Hospital hospital) {
@@ -45,13 +56,6 @@ public class HospitalDao {
     }
 
     public Hospital findById(int id) {
-        RowMapper<Hospital> rowMapper = new RowMapper<Hospital>() {
-            @Override
-            public Hospital mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Hospital hospital = new Hospital(rs.ge);
-                return hospital;
-            }
-        };
         String sql = "SELECT * FROM nationwide_hospitals WHERE id = ?";
         return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
     }

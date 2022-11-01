@@ -25,6 +25,23 @@ class HospitalParserTest {
     HospitalDao hospitalDao;    // HospitalDao가 왜 DI가 될까? -> @Autowired가 있으며, HospitalDao에 @Component가 붙어있음
                                 // Component가 있으면 @Bean을 모두 붙인다.
 
+
+
+    @Test
+    @DisplayName("임의의 id의 정보를 잘 불러오는지")
+    void findById() {
+        hospitalDao.deleteAll();
+
+        HospitalParser hp = new HospitalParser();
+        Hospital hospital = hp.parse(line1);
+
+        hospitalDao.add(hospital);
+
+        Hospital selectedHospital = hospitalDao.findById(1);
+        assertEquals(hospital.getHospitalName(), selectedHospital.getHospitalName());
+        assertEquals(hospital.getLicenseDate(), selectedHospital.getLicenseDate());
+    }
+
     @Test
     @DisplayName("Hospital이 insert가 잘 되는지")
     void add() {
@@ -35,9 +52,16 @@ class HospitalParserTest {
     }
 
     @Test
-    @DisplayName("Hospital이 getCount가 잘 되는지")
-    void getCount() {
-        System.out.println(hospitalDao.getCount());
+    @DisplayName("getCount와 deleteAll이 잘 되는지")
+    void getCountAndDeleteAll() {
+        hospitalDao.deleteAll();
+        assertEquals(0, hospitalDao.getCount());
+
+        HospitalParser hp = new HospitalParser();
+        Hospital hospital = hp.parse(line1);
+
+        hospitalDao.add(hospital);
+        assertEquals(1, hospitalDao.getCount());
     }
 
     @Test
