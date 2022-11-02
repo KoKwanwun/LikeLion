@@ -14,15 +14,11 @@ public class SieveOfEratosthenes {
             arr.add(i);
         }
 
-        // 각 배수 지우고 removed 리스트에 넣은 후 for문을 다 돈 후 제거
-        ArrayList<Integer> removed = new ArrayList<>();
-        for (int i = 3; i <= N; i++) {
-            if(i % 2 == 0) {
-                removed.add(i);
+        // 2를 제외한 2의 배수 제거
+        for (int i = 0; i < arr.size(); i++) {
+            if(arr.get(i) % 2 == 0 && arr.get(i) > 2) {
+                arr.remove(i);
             }
-        }
-        for (Integer num : removed) {
-            arr.remove(Integer.valueOf(num));
         }
         System.out.println(arr.size());
     }
