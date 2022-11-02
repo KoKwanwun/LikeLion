@@ -25,6 +25,22 @@ class HospitalParserTest {
     HospitalDao hospitalDao;    // HospitalDao가 왜 DI가 될까? -> @Autowired가 있으며, HospitalDao에 @Component가 붙어있음
                                 // Component가 있으면 @Bean을 모두 붙인다.
 
+
+    @Test
+    @DisplayName("모든 병원 데이터 넣기")
+    void addAll() throws IOException {
+        hospitalDao.deleteAll();
+
+        String filename = "D:\\고관운 자료\\멋쟁이사자처럼\\수업 자료\\fulldata_01_01_02_P_의원_utf8.csv";
+        List<Hospital> hospitalList = hospitalReadLineContext.readByLine(filename);
+
+        for (Hospital hospital : hospitalList) {
+            hospitalDao.add(hospital);
+        }
+
+        System.out.println(hospitalDao.getCount());
+    }
+
     @Test
     @DisplayName("임의의 id의 정보를 잘 불러오는지")
     void findById() {
