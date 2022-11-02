@@ -16,10 +16,11 @@
 
 ### 221101 (소수찾기, Hospital add, getCount, deleteAll, findById 구현)
 - `Programmers_12921` : 소수찾기
-- - **SpringBootCoreGuide** : Hospital add, getCount, deleteAll, findById 구현
+- **SpringBootCoreGuide** : Hospital add, getCount, deleteAll, findById 구현
 
-### 221102 ()
-- 
+### 221102 (에라토스테네스의 체, Hospital 데이터 DB에 Insert하기, Controller로 데이터 불러와서 Web으로 리턴하기, Docker 빌드 및 SpringBoot 실행)
+- SieveOfEratosthenes : 에라토스테네스의 체
+- **SpringBootCoreGuide** : Hospital 데이터 DB에 Insert하기, Controller로 데이터 불러와서 Web으로 리턴하기, Docker 빌드 및 SpringBoot 실행
 
 ### 221103 ()
 - 
