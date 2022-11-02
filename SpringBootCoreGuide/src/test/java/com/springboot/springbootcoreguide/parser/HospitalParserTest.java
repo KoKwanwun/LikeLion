@@ -29,56 +29,56 @@ class HospitalParserTest {
     @Autowired
     HospitalService hospitalService;
 
-    @Test
-    @DisplayName("임의의 id의 정보를 잘 불러오는지")
-    void findById() {
-        hospitalDao.deleteAll();
-
-        HospitalParser hp = new HospitalParser();
-        Hospital hospital = hp.parse(line1);
-
-        hospitalDao.add(hospital);
-
-        Hospital selectedHospital = hospitalDao.findById(1);
-        assertEquals(hospital.getHospitalName(), selectedHospital.getHospitalName());
-
-        // LocalDateTime 비교하는 방법
-        assertTrue(hospital.getLicenseDate().isEqual(selectedHospital.getLicenseDate()));
-        assertEquals(hospital.getLicenseDate(), selectedHospital.getLicenseDate());
-    }
-
-    @Test
-    @DisplayName("Hospital이 insert가 잘 되는지")
-    void add() {
-        HospitalParser hp = new HospitalParser();
-        Hospital hospital = hp.parse(line1);
-
-        hospitalDao.add(hospital);
-    }
-
-    @Test
-    @DisplayName("getCount와 deleteAll이 잘 되는지")
-    void getCountAndDeleteAll() {
-        hospitalDao.deleteAll();
-        assertEquals(0, hospitalDao.getCount());
-
-        HospitalParser hp = new HospitalParser();
-        Hospital hospital = hp.parse(line1);
-
-        hospitalDao.add(hospital);
-        assertEquals(1, hospitalDao.getCount());
-    }
-
-    @Test
-    @DisplayName("10만 건 이상 데이터가 파싱되는지")
-    void insertData() throws IOException {
-        hospitalDao.deleteAll();
-        String filename = "D:\\고관운 자료\\멋쟁이사자처럼\\수업 자료\\fulldata_01_01_02_P_의원_utf8.csv";
-        int cnt = this.hospitalService.insertLargeVolumeHospitalData(filename);
-
-        assertEquals(cnt, hospitalDao.getCount());
-        System.out.println("DB에 들어간 데이터 개수 : " + cnt);
-    }
+//    @Test
+//    @DisplayName("임의의 id의 정보를 잘 불러오는지")
+//    void findById() {
+//        hospitalDao.deleteAll();
+//
+//        HospitalParser hp = new HospitalParser();
+//        Hospital hospital = hp.parse(line1);
+//
+//        hospitalDao.add(hospital);
+//
+//        Hospital selectedHospital = hospitalDao.findById(1);
+//        assertEquals(hospital.getHospitalName(), selectedHospital.getHospitalName());
+//
+//        // LocalDateTime 비교하는 방법
+//        assertTrue(hospital.getLicenseDate().isEqual(selectedHospital.getLicenseDate()));
+//        assertEquals(hospital.getLicenseDate(), selectedHospital.getLicenseDate());
+//    }
+//
+//    @Test
+//    @DisplayName("Hospital이 insert가 잘 되는지")
+//    void add() {
+//        HospitalParser hp = new HospitalParser();
+//        Hospital hospital = hp.parse(line1);
+//
+//        hospitalDao.add(hospital);
+//    }
+//
+//    @Test
+//    @DisplayName("getCount와 deleteAll이 잘 되는지")
+//    void getCountAndDeleteAll() {
+//        hospitalDao.deleteAll();
+//        assertEquals(0, hospitalDao.getCount());
+//
+//        HospitalParser hp = new HospitalParser();
+//        Hospital hospital = hp.parse(line1);
+//
+//        hospitalDao.add(hospital);
+//        assertEquals(1, hospitalDao.getCount());
+//    }
+//
+//    @Test
+//    @DisplayName("DB에 Hospital 데이터 넣기")
+//    void insertData() throws IOException {
+//        hospitalDao.deleteAll();
+//        String filename = "D:\\고관운 자료\\멋쟁이사자처럼\\수업 자료\\fulldata_01_01_02_P_의원_utf8.csv";
+//        int cnt = this.hospitalService.insertLargeVolumeHospitalData(filename);
+//
+//        assertEquals(cnt, hospitalDao.getCount());
+//        System.out.println("DB에 들어간 데이터 개수 : " + cnt);
+//    }
 
     @Test
     @DisplayName("csv 1줄을 Hospital로 잘 만드는지 Test")
