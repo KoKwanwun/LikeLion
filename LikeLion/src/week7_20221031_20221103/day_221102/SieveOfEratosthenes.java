@@ -3,24 +3,35 @@ package week7_20221031_20221103.day_221102;
 import java.util.ArrayList;
 
 public class SieveOfEratosthenes {
-    // 이렇게 구현하면 직관적으로 코드를 이해하기 쉽지만 속도가 느림
+    // 소수여부를 판단해주는 배열을 따로 생성하여 구현
     public int solution(int N) {
         // 2~N까지 리스트에 넣기
-        ArrayList<Integer> arr = new ArrayList<>();
+        boolean[] checks = new boolean[N+1];
 
-        for (int i = 2; i <= N; i++) {
-            arr.add(i);
+        checks[0] = false;
+        checks[1] = false;
+
+        for (int i = 2; i < N+1; i++) {
+            checks[i] = true;
         }
 
         // 2부터 루트 N까지 나누며 배수 제거
-        for (int i = 2; i * i <= N; i++) {
-            for (int j = 0; j < arr.size(); j++) {
-                if(arr.get(j) % i == 0 && arr.get(j) > i) {
-                    arr.remove(j);
+        for (int i = 2; i * i < N+1; i++) {
+            for (int j = i*i; j < N+1; j+=i) {
+                if(j % i == 0) {
+                    checks[j] = false;
                 }
             }
         }
 
-        return arr.size();
+        // 소수 리스트를 따로 생성
+        ArrayList<Integer> primeNum = new ArrayList<>();
+        for (int i = 0; i < N+1; i++) {
+            if(checks[i]){
+                primeNum.add(i);
+            }
+        }
+
+        return primeNum.size();
     }
 }
