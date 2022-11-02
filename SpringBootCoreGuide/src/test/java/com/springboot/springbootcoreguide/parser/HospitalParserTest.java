@@ -2,6 +2,7 @@ package com.springboot.springbootcoreguide.parser;
 
 import com.springboot.springbootcoreguide.dao.HospitalDao;
 import com.springboot.springbootcoreguide.domain.Hospital;
+import com.springboot.springbootcoreguide.service.HospitalService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,21 +26,8 @@ class HospitalParserTest {
     HospitalDao hospitalDao;    // HospitalDao가 왜 DI가 될까? -> @Autowired가 있으며, HospitalDao에 @Component가 붙어있음
                                 // Component가 있으면 @Bean을 모두 붙인다.
 
-
-    @Test
-    @DisplayName("모든 병원 데이터 넣기")
-    void addAll() throws IOException {
-        hospitalDao.deleteAll();
-
-        String filename = "D:\\고관운 자료\\멋쟁이사자처럼\\수업 자료\\fulldata_01_01_02_P_의원_utf8.csv";
-        List<Hospital> hospitalList = hospitalReadLineContext.readByLine(filename);
-
-        for (Hospital hospital : hospitalList) {
-            hospitalDao.add(hospital);
-        }
-
-        System.out.println(hospitalDao.getCount());
-    }
+    @Autowired
+    HospitalService hospitalService;
 
     @Test
     @DisplayName("임의의 id의 정보를 잘 불러오는지")
@@ -83,14 +71,13 @@ class HospitalParserTest {
 
     @Test
     @DisplayName("10만 건 이상 데이터가 파싱되는지")
-    void OneHundreadThousandRows() throws IOException {
+    void insertData() throws IOException {
+        hospitalDao.deleteAll();
         String filename = "D:\\고관운 자료\\멋쟁이사자처럼\\수업 자료\\fulldata_01_01_02_P_의원_utf8.csv";
-        List<Hospital> hospitalList = hospitalReadLineContext.readByLine(filename);
-        assertTrue(hospitalList.size() > 100000);
+        int cnt = this.hospitalService.insertLargeVolumeHospitalData(filename);
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(hospitalList.get(i).getHospitalName());
-        }
+        assertEquals(cnt, hospitalDao.getCount());
+        System.out.println("DB에 들어간 데이터 개수 : " + cnt);
     }
 
     @Test
