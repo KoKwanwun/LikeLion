@@ -4,6 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SieveOfEratosthenes {
+    public static void printNum(int[] nums, boolean[] checks) {
+        // check를 참고해서 true인 nums[i]만 출력, size 출력
+        int cnt = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if(checks[i]){
+                System.out.print(nums[i] + " ");
+                cnt++;
+            }
+        }
+        System.out.println("\nsize:" + cnt);
+    }
+
     public static void main(String[] args) {
         int N = 50;
         int[] nums = new int[N-1];      // 2~50까지 넣을 배열 생성
@@ -13,18 +25,15 @@ public class SieveOfEratosthenes {
             nums[i] = i + 2;
         }
 
-        // 2를 제외한 2의 배수 지우기
-        // 0 1 2 3 4 5 6 7 8  .. 48
-        // 2 3 4 5 6 7 8 9 10 ... 50
-        for (int i = 2; i < nums.length; i+=2) {
-            checks[i] = false;
-        }
+        // 배수를 false로 변환
+        for (int i = 0; i * i <= N; i++) {
+            int multipleOf = nums[i];
 
-        // check를 참고해서 true인 nums[i]만 출력
-        for (int i = 0; i < nums.length; i++) {
-            if(checks[i]){
-                System.out.println(nums[i]);
+            for (int j = multipleOf + i; j < nums.length; j+=multipleOf) {
+                checks[j] = false;
             }
+
+            printNum(nums, checks);
         }
     }
 }
