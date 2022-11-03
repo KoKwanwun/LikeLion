@@ -1,14 +1,16 @@
 package week7_20221031_20221103.day_221103;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SieveOfEratosthenes {
-    // 2~100, 2의 배수를 쌍으로 출력
     public static void main(String[] args) {
-        int checks = 2;
-        for (int i = 2; i <= 100; i++) {
-            System.out.println(i + ", " + checks);
-            checks += 2;
+        int N = 50;
+        int[] nums = new int[N-1];      // 2~50까지 넣을 배열 생성
+        boolean[] checks = new boolean[nums.length];
+        Arrays.fill(checks, true);  // checks를 true로 초기화
+        for (int i = 0; i < nums.length; i++) { // 2~50까지 채우기
+            nums[i] = i + 2;
         }
     }
 }
