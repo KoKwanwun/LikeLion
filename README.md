@@ -7,6 +7,31 @@
 
 ## Contents
 <details>
+<summary>Week8 (221107 ~ 221111)</summary>
+
+## Week8 (221107 ~ 221111)
+### 221107 (하샤드 수, 나누어 떨어지는 숫자 배열, 게시판 새 글 생성 및 DB 저장(MVC, JPA, mustache))
+- `Programmers_12947` : 하샤드 수
+- `Programmers_12910` : 나누어 떨어지는 숫자 배열
+- **SpringBoot-mustache-bbs** : 게시판 새 글 생성 및 DB 저장(MVC, JPA, mustache)
+
+### 221108 ()
+- 
+
+### 221109 ()
+- 
+
+### 221110 ()
+- 
+
+### 221111 ()
+- 
+
+</details>
+
+---
+
+<details>
 <summary>Week7 (221031 ~ 221103)</summary>
 
 ## Week7 (221031 ~ 221103)
