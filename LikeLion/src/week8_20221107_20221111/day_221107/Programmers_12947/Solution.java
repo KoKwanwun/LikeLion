@@ -11,8 +11,6 @@ class Solution {
             divideNum += Integer.parseInt(num);
         }
 
-        // System.out.println(divideNum);
-
-        return true;
+        return x % divideNum == 0;
     }
 }
