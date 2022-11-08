@@ -9,4 +9,8 @@ import lombok.ToString;
 @ToString
 public class ArticleDto {
     private String title;
+
+    public Article toEntity() {
+        return new Article(this.title);
+    }
 }
