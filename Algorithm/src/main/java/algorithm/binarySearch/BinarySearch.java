@@ -1,37 +1,31 @@
 package algorithm.binarySearch;
 
-import java.util.Arrays;
-
 public class BinarySearch {
-    public int searchNum(int[] nums, int findNum) {
-        int idx;
-        int median;
-
-        // 중간값 찾기
-        idx = nums.length / 2;
-        median = nums[idx];
-
-        // 인덱스(시작점, 끝점) 옮기기
-
-        // 같은지 비교하기
-        if(median == findNum){
-            return idx;
-        } else if(median > findNum) {
-            return searchNum(Arrays.copyOfRange(nums, 0, idx-1), findNum);
-        }
-    }
-
     public static void main(String[] args) {
+        int targetNum = 7;
         int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-        int idx;
-        int median;
 
-        // 중간값 찾기
-        idx = nums.length / 2;
-        median = nums[idx];
+        int startIdx = 0;
+        int endIdx = nums.length - 1;
+        int midIdx;
+        int targetIdx = -1;
 
-        // 인덱스(시작점, 끝점) 옮기기
+        while(startIdx <= endIdx){
+            midIdx = (startIdx + endIdx) / 2;
 
-        // 같은지 비교하기
+            if (nums[midIdx] < targetNum) {
+                startIdx = midIdx + 1;
+            } else if (nums[midIdx] > targetNum) {
+                endIdx = midIdx - 1;
+            } else {
+                System.out.println(midIdx);
+                targetIdx = midIdx;
+                break;
+            }
+        }
+
+        if (targetIdx == -1) {
+            System.out.println(targetIdx);
+        }
     }
 }
