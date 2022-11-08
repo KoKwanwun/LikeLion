@@ -12,8 +12,10 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    private String content;
 
-    public Article(String title) {
+    public Article(String title, String content) {
         this.title = title;
+        this.content = content;
     }
 }
