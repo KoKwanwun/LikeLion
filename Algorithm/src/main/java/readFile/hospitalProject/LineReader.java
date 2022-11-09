@@ -1,6 +1,6 @@
 package readFile.hospitalProject;
 
-import week4_20221011_20221014.day_221012.parser.Parser;
+import readFile.hospitalProject.parser.Parser;
 
 import java.io.*;
 import java.util.ArrayList;

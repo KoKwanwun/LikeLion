@@ -1,7 +1,7 @@
 package readFile.hospitalProject;
 
-import week4_20221011_20221014.day_221012.domain.Hospital;
-import week4_20221011_20221014.day_221012.parser.HospitalParser;
+import readFile.hospitalProject.domain.Hospital;
+import readFile.hospitalProject.parser.HospitalParser;
 
 import java.io.IOException;
 import java.util.ArrayList;

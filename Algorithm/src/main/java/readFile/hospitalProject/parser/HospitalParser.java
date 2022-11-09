@@ -1,6 +1,6 @@
 package readFile.hospitalProject.parser;
 
-import week4_20221011_20221014.day_221012.domain.Hospital;
+import readFile.hospitalProject.domain.Hospital;
 
 public class HospitalParser implements Parser<Hospital> {
     private String getSubdivision(String name) {
