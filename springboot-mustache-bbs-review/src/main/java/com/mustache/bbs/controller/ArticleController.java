@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -22,6 +23,13 @@ public class ArticleController {
 
     public ArticleController(ArticleRepository repository) {
         this.articleRepository = repository;
+    }
+
+    @GetMapping()
+    public String list(Model model) {
+        List<Article> articles = articleRepository.findAll();
+        model.addAttribute("articles", articles);
+        return "articles/list";
     }
 
     @GetMapping("/new")
