@@ -2,7 +2,7 @@ package algorithm.sort.selectionsort;
 
 import java.util.Arrays;
 
-public class SelectionSort {
+public class SelectionSortAscending {
     public static void main(String[] args) {
         int[] nums = new int[]{2, 7, 4, 9, 10, 223, 111, 23, 3, 39};
 
