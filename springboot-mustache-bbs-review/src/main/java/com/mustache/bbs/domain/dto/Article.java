@@ -1,5 +1,6 @@
 package com.mustache.bbs.domain.dto;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Article2")
 @NoArgsConstructor
+@Getter
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
