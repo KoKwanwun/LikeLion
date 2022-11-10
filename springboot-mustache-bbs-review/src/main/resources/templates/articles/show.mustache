@@ -23,4 +23,16 @@
 <br>
 <hr>
 <h5>Comment</h5>
+<form action="/comment/{{article.id}}/post" method="post">
+<div class="input-group">
+    <span class="input-group-text">내용 및 작성자</span>
+    <input type="hidden" name="{{article.id}}">
+    <input type="text" name="commentContent" class="form-control">
+    <input type="text" name="user" class="form-control">
+    <button class="btn btn-secondary">댓글제출</button>
+</div>
+</form>
+<div>
+
+</div>
 {{>layouts/footer}}

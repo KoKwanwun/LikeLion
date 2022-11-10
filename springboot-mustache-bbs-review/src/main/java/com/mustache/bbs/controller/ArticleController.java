@@ -1,8 +1,10 @@
 package com.mustache.bbs.controller;
 
 import com.mustache.bbs.domain.Article;
+import com.mustache.bbs.domain.Comment;
 import com.mustache.bbs.dto.ArticleDto;
 import com.mustache.bbs.repository.ArticleRepository;
+import com.mustache.bbs.repository.CommentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +22,11 @@ import java.util.Optional;
 public class ArticleController {
 
     private final ArticleRepository articleRepository;
+    private final CommentRepository commentRepository;
 
-    public ArticleController(ArticleRepository repository) {
+    public ArticleController(ArticleRepository repository, CommentRepository commentRepository) {
         this.articleRepository = repository;
+        this.commentRepository = commentRepository;
     }
 
     @GetMapping()
@@ -42,6 +46,9 @@ public class ArticleController {
         Optional<Article> optArticle = articleRepository.findById(id);
         if(!optArticle.isEmpty()){
             model.addAttribute("article", optArticle.get());
+
+            List<Comment> comments = commentRepository.findByArticleId(id);
+            model.addAttribute("comments", comments);
             return "articles/show";
         } else{
             return "articles/error";
