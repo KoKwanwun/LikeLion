@@ -1,13 +1,26 @@
 {{>layouts/header}}
-<div class="card" style="width: 18rem;">
-    {{#article}}
-        <div class="card-body">
-            <h5 class="card-title">{{id}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{title}}</h6>
-            <p class="card-text">{{content}}</p>
-        </div>
-    {{/article}}
+<div class="alert alert-primary" role="alert">
+    이곳은 Id가 {{article.id}}인 게시글입니다.
 </div>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    {{#article}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{content}}</td>
+        </tr>
+    {{/article}}
+    </tbody>
+</table>
 <a class="btn btn-primary" href="/articles/{{article.id}}/edit">Edit</a>
 <a class="btn btn-danger" href="/articles/{{article.id}}/delete">Delete</a>
+<br>
+<hr>
+<h5>Comment</h5>
 {{>layouts/footer}}
