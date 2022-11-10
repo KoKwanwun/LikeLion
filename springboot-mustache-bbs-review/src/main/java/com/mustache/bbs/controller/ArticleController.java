@@ -1,7 +1,7 @@
 package com.mustache.bbs.controller;
 
-import com.mustache.bbs.domain.dto.Article;
-import com.mustache.bbs.domain.dto.ArticleDto;
+import com.mustache.bbs.domain.Article;
+import com.mustache.bbs.dto.ArticleDto;
 import com.mustache.bbs.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -53,5 +53,25 @@ public class ArticleController {
         log.info(articleDto.toString());
         Article savedArticle = articleRepository.save(articleDto.toEntity());
         return String.format("redirect:/articles/%d", savedArticle.getId());
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editArticles(@PathVariable Long id, Model model) {
+        Optional<Article> optArticle = articleRepository.findById(id);
+
+        if(!optArticle.isEmpty()){
+            model.addAttribute("article", optArticle.get());
+            return "articles/edit";
+        } else{
+            return "articles/error";
+        }
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateArticles(@PathVariable Long id, ArticleDto articleDto, Model model) {
+        Article article = articleRepository.save(articleDto.toEntity());
+        model.addAttribute("article", article);
+
+        return String.format("redirect:/articles/%d", article.getId());
     }
 }
