@@ -89,9 +89,9 @@ public class ArticleController {
         return "redirect:/articles";
     }
 
-    @PostMapping("/comment/{id}/post")
-    public String comment(@PathVariable Long id, CommentDto commentDto) {
-        commentRepository.save(commentDto.toEntity());
-        return String.format("redirect:/articles/%d", id);
+    @PostMapping("/comment/post")
+    public String comment(CommentDto commentDto) {
+        Comment savedComment = commentRepository.save(commentDto.toEntity());
+        return String.format("redirect:/articles/%d", savedComment.getArticle_id());
     }
 }
