@@ -1,0 +1,20 @@
+{{>layouts/header}}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    {{#hospitals}}
+        <tr>
+            <th>{{id}}</th>
+            <td>{{hospital_name}}</a></td>
+            <td>{{road_name_address}}</td>
+        </tr>
+    {{/hospitals}}
+    </tbody>
+</table>
+{{>layouts/footer}}
