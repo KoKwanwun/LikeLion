@@ -92,6 +92,6 @@ public class ArticleController {
     @PostMapping("/comment/post")
     public String comment(CommentDto commentDto) {
         Comment savedComment = commentRepository.save(commentDto.toEntity());
-        return String.format("redirect:/articles/%d", savedComment.getArticle_id());
+        return String.format("redirect:/articles/%d", savedComment.getArticleId());
     }
 }

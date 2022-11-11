@@ -11,11 +11,11 @@ import lombok.ToString;
 @ToString
 public class CommentDto {
     private Long id;
-    private Long article_id;
+    private Long articleId;
     private String commentContent;
     private String user;
 
     public Comment toEntity() {
-        return new Comment(this.id, this.article_id, this.commentContent, this.user);
+        return new Comment(this.id, this.articleId, this.commentContent, this.user);
     }
 }
