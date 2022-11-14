@@ -34,7 +34,8 @@ public class Hospital {
     @Column(name = "hospital_name")
     private String hospitalName;
 
-    private String business_type_name;
+    @Column(name = "business_type_name")
+    private String businessTypeName;
     private Integer healthcare_provider_count;
     private Integer patient_room_count;
     private Integer total_number_of_beds;
