@@ -12,5 +12,12 @@ public interface HospitalRepository extends JpaRepository<Hospital, Integer> {
         WHERE road_name_address LIKE '경기도 수원시%'
             AND hospital_name LIKE '%피부%';
      */
+    List<Hospital> findByRoadNameAddressContainingAndHospitalNameContaining(String address, String name);
+
+    /*
+    비즈니스 타입이 보건소, 보건지소, 보건진료소인 경우
+    SELECT * FROM nation_wide_hospitals
+        WHERE business_type_name IN ('보건소', '보건지소', '보건진료소')
+     */
     List<Hospital> findByBusinessTypeNameIn(List<String> businessTypes);
 }

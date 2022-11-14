@@ -29,7 +29,9 @@ public class Hospital {
     private Integer business_status_code;
     private String phone;
     private String full_address;
-    private String road_name_address;
+
+    @Column(name = "road_name_address")
+    private String roadNameAddress;
 
     @Column(name = "hospital_name")
     private String hospitalName;
