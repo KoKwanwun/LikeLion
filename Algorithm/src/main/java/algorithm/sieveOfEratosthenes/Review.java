@@ -20,5 +20,12 @@ public class Review {
                 checks[j] = false;
             }
         }
+
+        // 소수 출력
+        for (int i = 0; i < nums.length; i++) {
+            if(checks[i]){
+                System.out.print(nums[i] + " ");
+            }
+        }
     }
 }
