@@ -38,8 +38,12 @@ public class Hospital {
 
     @Column(name = "business_type_name")
     private String businessTypeName;
+
     private Integer healthcare_provider_count;
     private Integer patient_room_count;
-    private Integer total_number_of_beds;
+
+    @Column(name = "total_number_of_beds")
+    private Integer totalNumberOfBeds;
+
     private float total_area_size;
 }
