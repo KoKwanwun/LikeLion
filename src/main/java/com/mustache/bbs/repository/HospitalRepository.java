@@ -20,4 +20,7 @@ public interface HospitalRepository extends JpaRepository<Hospital, Integer> {
         WHERE business_type_name IN ('보건소', '보건지소', '보건진료소')
      */
     List<Hospital> findByBusinessTypeNameIn(List<String> businessTypes);
+
+    // 병상 수가 10개 이상 20개 미만인 병원을 모두 찾기
+    List<Hospital> findByTotalNumberOfBedsBetween(Integer start, Integer end);
 }

@@ -59,4 +59,13 @@ class HospitalRepositoryTest {
             System.out.println(hospital.getBusinessTypeName() + ", " + hospital.getHospitalName() + ", " + hospital.getRoadNameAddress());
         }
     }
+
+    @Test
+    @DisplayName("병상 수 10개 이상 20개 미만 병원 찾기")
+    void findByTotalNumberOfBedsBetween(){
+        List<Hospital> hospitalList = hospitalRepository.findByTotalNumberOfBedsBetween(10, 19);
+        for (Hospital hospital : hospitalList) {
+            System.out.println(hospital.getHospitalName() + " | " + hospital.getTotalNumberOfBeds());
+        }
+    }
 }
