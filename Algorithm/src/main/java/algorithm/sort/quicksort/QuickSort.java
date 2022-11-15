@@ -12,6 +12,7 @@ public class QuickSort {
         List<Integer> medianList = new ArrayList<>();
         List<Integer> largeList = new ArrayList<>();
 
+        // pivot을 기준으로 나누기
         for (int i = 0; i < size; i++) {
             if(pivot == arr.get(i)){
                 medianList.add(arr.get(i));
@@ -22,6 +23,7 @@ public class QuickSort {
             }
         }
 
+        // 각 size가 1이하라면 더이상 재귀하지 않음
         if(smallList.size() > 1){
             smallList = sort(smallList);
         }
@@ -29,6 +31,7 @@ public class QuickSort {
             largeList = sort(largeList);
         }
 
+        // 모든 정렬된 리스트를 병합하여 리턴
         List<Integer> joined = new ArrayList<>();
         joined.addAll(smallList);
         joined.addAll(medianList);
