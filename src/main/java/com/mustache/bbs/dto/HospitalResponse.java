@@ -39,4 +39,29 @@ public class HospitalResponse {
     private Integer totalNumberOfBeds;
 
     private float total_area_size;
+
+    public HospitalResponse(Integer id, String open_service_name, Integer open_local_government_code, String management_number, Timestamp license_date, Integer business_status, Integer business_status_code, String phone, String full_address, String roadNameAddress, String hospitalName, String businessTypeName, Integer healthcare_provider_count, Integer patient_room_count, Integer totalNumberOfBeds, float total_area_size) {
+        this.id = id;
+        this.open_service_name = open_service_name;
+        this.open_local_government_code = open_local_government_code;
+        this.management_number = management_number;
+        this.license_date = license_date;
+        this.business_status = business_status;
+        this.business_status_code = business_status_code;
+        this.phone = phone;
+        this.full_address = full_address;
+        this.roadNameAddress = roadNameAddress;
+        this.hospitalName = hospitalName;
+        this.businessTypeName = businessTypeName;
+        this.healthcare_provider_count = healthcare_provider_count;
+        this.patient_room_count = patient_room_count;
+        this.totalNumberOfBeds = totalNumberOfBeds;
+        this.total_area_size = total_area_size;
+    }
+
+    private String businessStatusName;
+
+    public void setBusinessStatusName(String businessStatusName) {
+        this.businessStatusName = businessStatusName;
+    }
 }

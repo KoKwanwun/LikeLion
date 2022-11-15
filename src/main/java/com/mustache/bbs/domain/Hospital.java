@@ -50,7 +50,7 @@ public class Hospital {
 
     public static HospitalResponse of(Hospital hospital) {
         return new HospitalResponse(hospital.getId(), hospital.getOpen_service_name(), hospital.getOpen_local_government_code(),
-                hospital.getManagement_number(), hospital. getLicense_date(), hospital.getBusiness_status(),
+                hospital.getManagement_number(), hospital.getLicense_date(), hospital.getBusiness_status(),
                 hospital.getBusiness_status_code(), hospital.getPhone(), hospital.getFull_address(),
                 hospital.getRoadNameAddress(), hospital.getHospitalName(), hospital.getBusinessTypeName(),
                 hospital.getHealthcare_provider_count(), hospital.getPatient_room_count(),
