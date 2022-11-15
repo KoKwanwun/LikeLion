@@ -21,7 +21,7 @@ public class HospitalService {
         HospitalResponse hospitalResponse = Hospital.of(hospital); // DTO
         
         // code에 맞는 이름으로 변경
-        switch (hospitalResponse.getBusiness_status_code()){
+        switch (hospital.getBusiness_status_code()){
             case 13:
                 hospitalResponse.setBusinessStatusName("영업중");
                 break;
