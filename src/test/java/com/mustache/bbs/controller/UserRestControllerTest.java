@@ -30,13 +30,13 @@ class UserRestControllerTest {
     @DisplayName("입력한 Id로 조회가 잘 되는지")
     void findById() throws Exception {
 
-        given(userService.getUser(1l)).willReturn(new UserResponse(1l, "Ko", "가입이 완료되었습니다."));
+        given(userService.getUser(1l)).willReturn(new UserResponse(1l, "Ko", "등록이 완료되었습니다."));
 
         mockMvc.perform(get("/api/v1/users/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.message").value("가입이 완료되었습니다."))
+                .andExpect(jsonPath("$.message").value("등록이 완료되었습니다."))
                 .andDo(print());
     }
 

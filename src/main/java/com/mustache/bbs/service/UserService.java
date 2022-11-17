@@ -33,7 +33,7 @@ public class UserService {
 
         if(selectedUser.isEmpty()){
             User savedUser = userRepository.save(dto.toEntity());
-            return new UserResponse(savedUser.getId(), savedUser.getUsername(), "가입이 완료되었습니다.");
+            return new UserResponse(savedUser.getId(), savedUser.getUsername(), "등록이 완료되었습니다.");
         } else {
             return new UserResponse(null, dto.getUsername(), "해당 username은 이미 존재합니다.");
         }
