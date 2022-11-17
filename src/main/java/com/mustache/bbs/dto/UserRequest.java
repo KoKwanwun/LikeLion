@@ -1,10 +1,7 @@
 package com.mustache.bbs.dto;
 
 import com.mustache.bbs.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -15,6 +12,9 @@ public class UserRequest {
     private String password;
 
     public User toEntity() {
-        return new User(username, password);
+        return User.builder()
+                .username(this.username)
+                .password(this.password)
+                .build();
     }
 }

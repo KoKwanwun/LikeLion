@@ -1,15 +1,13 @@
 package com.mustache.bbs.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Builder
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,9 +19,4 @@ public class User {
     private Long id;
     private String username;
     private String password;
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 }
