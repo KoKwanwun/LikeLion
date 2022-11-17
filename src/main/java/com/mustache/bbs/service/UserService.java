@@ -1,6 +1,7 @@
 package com.mustache.bbs.service;
 
 import com.mustache.bbs.domain.User;
+import com.mustache.bbs.dto.UserRequest;
 import com.mustache.bbs.dto.UserResponse;
 import com.mustache.bbs.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,17 @@ public class UserService {
 
     public UserResponse getUser(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        User user = optionalUser.get();
-        UserResponse userResponse = User.of(user);
 
-        return userResponse;
+        if(optionalUser.isEmpty()){
+            return new UserResponse(id, "", "해당 id의 유저가 없습니다.");
+        } else {
+            User user = optionalUser.get();
+            return new UserResponse(user.getId(), user.getUsername(), "");
+        }
     }
 
+    public UserResponse addUser(UserRequest dto) {
+        User savedUser = userRepository.save(dto.toEntity());
+        return new UserResponse(savedUser.getUsername(), "가입이 완료되었습니다.");
+    }
 }

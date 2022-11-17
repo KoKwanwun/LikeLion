@@ -1,13 +1,10 @@
 package com.mustache.bbs.controller;
 
-import com.mustache.bbs.domain.User;
+import com.mustache.bbs.dto.UserRequest;
 import com.mustache.bbs.dto.UserResponse;
 import com.mustache.bbs.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -24,5 +21,11 @@ public class UserRestController {
     public ResponseEntity<UserResponse> findById(@PathVariable Long id) {
         UserResponse userResponse = userService.getUser(id);
         return ResponseEntity.ok().body(userResponse);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<UserResponse> add(@RequestBody UserRequest dto) {
+        UserResponse savedResponse = userService.addUser(dto);
+        return ResponseEntity.ok().body(savedResponse);
     }
 }

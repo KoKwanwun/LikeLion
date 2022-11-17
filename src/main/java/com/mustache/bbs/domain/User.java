@@ -1,6 +1,9 @@
 package com.mustache.bbs.domain;
 
-import com.mustache.bbs.dto.UserResponse;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +22,8 @@ public class User {
     private String username;
     private String password;
 
-    public static UserResponse of(User user) {
-        return new UserResponse(user.id, user.username);
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 }
