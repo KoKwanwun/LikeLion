@@ -5,6 +5,7 @@ import com.mustache.bbs.repository.HospitalRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class HospitalController {
     }
 
     @GetMapping("")
-    public String hospitalList(@RequestParam(required = false) String keyword, Model model, Pageable pageable){
+    public String hospitalList(@RequestParam(required = false) String keyword, Model model, @PageableDefault(size = 10) Pageable pageable){
         log.info("keyword:{}", keyword);
         Page<Hospital> hospitals;
         if(keyword != null){
