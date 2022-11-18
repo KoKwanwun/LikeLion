@@ -1,6 +1,8 @@
 package com.mustache.bbs.repository;
 
 import com.mustache.bbs.domain.Hospital;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -23,4 +25,7 @@ public interface HospitalRepository extends JpaRepository<Hospital, Integer> {
 
     // 병상 수가 10개 이상 20개 미만인 병원을 모두 찾기
     List<Hospital> findByTotalNumberOfBedsBetweenOrderByTotalNumberOfBedsDesc(Integer start, Integer end);
+
+    // 도로명주소에 특정 키워드가 포함된 데이터를 페이징해서 찾기
+    Page<Hospital> findByRoadNameAddressContaining(String str, Pageable pageable);
 }
