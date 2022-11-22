@@ -9,8 +9,7 @@ public class ListSum {
             System.out.println(sum);
             return;
         }
-        sum += nums.get(nums.size() - 1);
-        nums.remove(nums.size() - 1);
+        sum += nums.remove(nums.size() - 1);
         listSum(nums, sum);
     }
 
