@@ -17,7 +17,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        int sum = 0;
 
         main.printSum(n, 0);
     }
