@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "book2")
 public class Book {
     @Id
     private Long id;
@@ -19,4 +18,8 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
+
+    @OneToOne
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
 }
