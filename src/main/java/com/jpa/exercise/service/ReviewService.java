@@ -34,6 +34,15 @@ public class ReviewService {
                     .userName(review.get().getUserName())
                     .build();
         }
+        // orElseThrow 방식 -> 해당 id에 해당하는 review가 없다면 콘솔에 "해당 id가 없습니다."가 뜸
+//        Review review = reviewRepository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("해당 id가 없습니다."));
+//        return ReviewResponse.builder()
+//                .id(review.getId())
+//                .title(review.getTitle())
+//                .content(review.getContent())
+//                .userName(review.getUserName())
+//                .build();
     }
 
     public ReviewCreateResponse add(ReviewCreateRequest reviewCreateRequest) {
