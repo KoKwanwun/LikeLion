@@ -28,13 +28,8 @@ public class ReviewService {
         Hospital hospital = hospitalRepository.findById(hospitalId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 id가 없습니다."));
         List<ReviewResponse> reviewResponses = reviewRepository.findByHospital(hospital)
-                .stream().map(review -> ReviewResponse.builder()
-                        .id(review.getId())
-                        .title(review.getTitle())
-                        .content(review.getContent())
-                        .userName(review.getUserName())
-                        .hospitalName(review.getHospital().getHospitalName())
-                        .build()).collect(Collectors.toList());
+                .stream().map(review -> ReviewResponse.fromEntity(review))
+                .collect(Collectors.toList());
 
         return reviewResponses;
     }
