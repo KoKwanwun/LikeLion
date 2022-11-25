@@ -10,7 +10,9 @@ import com.jpa.exercise.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ReviewService {
@@ -20,6 +22,21 @@ public class ReviewService {
     public ReviewService(HospitalRepository hospitalRepository, ReviewRepository reviewRepository) {
         this.hospitalRepository = hospitalRepository;
         this.reviewRepository = reviewRepository;
+    }
+
+    public List<ReviewResponse> findAllByHospitalId(Long hospitalId) {
+        Hospital hospital = hospitalRepository.findById(hospitalId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 id가 없습니다."));
+        List<ReviewResponse> reviewResponses = reviewRepository.findByHospital(hospital)
+                .stream().map(review -> ReviewResponse.builder()
+                        .id(review.getId())
+                        .title(review.getTitle())
+                        .content(review.getContent())
+                        .userName(review.getUserName())
+                        .hospitalName(review.getHospital().getHospitalName())
+                        .build()).collect(Collectors.toList());
+
+        return reviewResponses;
     }
 
     public ReviewResponse findById(Long id) {
