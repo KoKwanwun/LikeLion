@@ -25,13 +25,14 @@ public class ReviewService {
     public ReviewResponse findById(Long id) {
         Optional<Review> review = reviewRepository.findById(id);
         if(review.isEmpty()){
-            return new ReviewResponse(null, "", "", "");
+            return new ReviewResponse(null, "", "", "", "");
         } else{
             return ReviewResponse.builder()
                     .id(review.get().getId())
                     .title(review.get().getTitle())
                     .content(review.get().getContent())
                     .userName(review.get().getUserName())
+                    .hospitalName(review.get().getHospital().getHospitalName())
                     .build();
         }
         // orElseThrow 방식 -> 해당 id에 해당하는 review가 없다면 콘솔에 "해당 id가 없습니다."가 뜸
