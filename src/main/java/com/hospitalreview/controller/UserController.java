@@ -1,6 +1,6 @@
 package com.hospitalreview.controller;
 
-import com.hospitalreview.Service.UserService;
+import com.hospitalreview.service.UserService;
 import com.hospitalreview.domain.Response;
 import com.hospitalreview.domain.dto.UserDto;
 import com.hospitalreview.domain.dto.UserJoinRequest;
