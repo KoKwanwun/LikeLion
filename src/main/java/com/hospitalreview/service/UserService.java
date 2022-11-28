@@ -19,7 +19,9 @@ public class UserService {
         // 회원 userName(id) 중복 Check
         // 중복이면 회원가입 X -> Exception(예외) 발생
         userRepository.findByUserName(request.getUserName())
-                .ifPresent(user -> new RuntimeException("해당 UserName이 중복됩니다."));
+                .ifPresent(user -> {
+                    throw new RuntimeException("해당 UserName이 중복됩니다.");
+                });
 
         // 중복 Check 통화하면 회원가입 -> .save()
         User savedUser = userRepository.save(request.toEntity());
