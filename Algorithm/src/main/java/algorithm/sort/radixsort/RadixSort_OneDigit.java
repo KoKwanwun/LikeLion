@@ -2,7 +2,7 @@ package algorithm.sort.radixsort;
 
 import java.util.Arrays;
 
-public class RadixSort {
+public class RadixSort_OneDigit {
     public static void main(String[] args) {
         int[] arr = new int[]{7, 4, 5, 9, 1, 0};
 
