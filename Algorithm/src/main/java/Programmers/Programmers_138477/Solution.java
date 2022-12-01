@@ -13,6 +13,7 @@ class Solution {
 
         PriorityQueue<Integer> pq = new PriorityQueue<>();
 
+        // for문을 2개로 나눈 이유 : pq.size()와 k를 비교하는 if문이 매 단계에서 실행되므로 시간복잡도가 커질 수 있다고 판단
         // k의 크기까지는 pq에 그냥 넣고 각 단계마다 최소값을 answer에 넣기
         for (int i = 0; i < k; i++) {
             pq.add(score[i]);
