@@ -7,6 +7,9 @@ public class PrintHeapIdx {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
 
-        System.out.println(((2*n)+1) + " " + ((2*n)+2));
+        int leftIdx = (2 * n) + 1;
+        int rightIdx = (2 * n) + 2;
+
+        System.out.println(leftIdx + " " + rightIdx);
     }
 }
