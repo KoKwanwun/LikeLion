@@ -1,6 +1,7 @@
 package com.hospitalreview.domain.dto;
 
 import com.hospitalreview.domain.User;
+import com.hospitalreview.domain.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class UserJoinRequest {
                 .userName(this.userName)
                 .password(password)
                 .emailAddress(this.emailAddress)
+                .role(UserRole.USER)
                 .build();
     }
 }
