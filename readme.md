@@ -7,5 +7,5 @@ Token이 잘 발행되는지, 발행된 Token을 이용해 인증을 시도했�
 - `Post` /api/v1/reviews : 토큰 인증
 
 # 실행방법
-1. http://localhost:8080/api/v1/users/login를 호출하여 Token 발행
-2. http://localhost:8080/api/v1/reviews를 호출할 때, Header에 Authorization에 `Bearer <Token>`을 넣어서 요청
+1. http://localhost:8080/api/v1/users/login 를 호출하여 Token 발행
+2. http://localhost:8080/api/v1/reviews 를 호출할 때, Header에 Authorization에 `Bearer <Token>`을 넣어서 요청
