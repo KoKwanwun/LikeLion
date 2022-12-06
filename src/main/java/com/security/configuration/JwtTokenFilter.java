@@ -52,11 +52,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             return;
         }
 
-        // message 가져오기
-        String message = JwtTokenUtil.getMessage(token, secretKey);
+        // userName 가져오기
+        String userName = JwtTokenUtil.getUserName(token, secretKey);
 
         // 권한 부여, Role 바인딩
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(message, null, List.of(new SimpleGrantedAuthority("MESSAGE")));
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userName, null, List.of(new SimpleGrantedAuthority("USER")));
         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);  // 권한 부여
         filterChain.doFilter(request, response);

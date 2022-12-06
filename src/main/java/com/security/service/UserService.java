@@ -16,6 +16,6 @@ public class UserService {
 
     public String getToken() {
         // 토큰 발행
-        return JwtTokenUtil.createToken("권한 부여 성공", secretKey, expireTimeMs);
+        return JwtTokenUtil.createToken("kwanwun", secretKey, expireTimeMs);
     }
 }
