@@ -3,27 +3,35 @@ package algorithm.heap;
 import java.util.Arrays;
 
 public class HeapSort {
-    public static int[] swap(int[] arr, int x, int y) {
-        int tmp = arr[x];
-        arr[x] = arr[y];
-        arr[y] = tmp;
+    private static int[] makeHeap(int[] arr, int parentIdx) {
+        int leftIdx = parentIdx * 2 + 1;
+        int rightIdx = parentIdx * 2 + 2;
+        int greatIdx = parentIdx;
+
+        if(leftIdx < arr.length && arr[leftIdx] > arr[greatIdx]){
+            greatIdx = leftIdx;
+        }
+
+        if(rightIdx < arr.length && arr[rightIdx] > arr[greatIdx]){
+            greatIdx = rightIdx;
+        }
+
+        if(greatIdx != parentIdx) {
+            int tmp = arr[greatIdx];
+            arr[greatIdx] = arr[parentIdx];
+            arr[parentIdx] = tmp;
+            makeHeap(arr, greatIdx);
+        }
 
         return arr;
     }
 
-    // 부모노드가 자식보다 항상 크거나 항상 작은 이진트리
     public static void main(String[] args) {
-        int[] arr = new int[]{9, 8, 5, 7, 3, 2, 4, 10, 11};
+        int[] arr = new int[]{6, 5, 7, 8};
+        arr = new int[]{5, 8, 4, 7, 3, 2, 9, 10, 11};
 
-        for (int i = arr.length-1; i > 0; i--) {
-            if(i <= 2 & arr[i] > arr[0]){
-                swap(arr, i, 0);
-            }else if(i % 2 == 0 & arr[i] > arr[(i-2)/2]){
-                swap(arr, i, (i-2)/2);
-            }else if(i % 2 == 1 & arr[i] > arr[(i-1)/2]){
-                swap(arr, i, (i-1)/2);
-            }
-
+        for (int i = (arr.length - 2) / 2; i >= 0; i--) {
+            arr = makeHeap(arr, i);
             System.out.println(Arrays.toString(arr));
         }
     }
