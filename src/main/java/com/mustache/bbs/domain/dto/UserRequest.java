@@ -1,4 +1,4 @@
-package com.mustache.bbs.dto;
+package com.mustache.bbs.domain.dto;
 
 import com.mustache.bbs.domain.User;
 import lombok.*;
