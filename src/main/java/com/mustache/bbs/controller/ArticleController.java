@@ -2,8 +2,8 @@ package com.mustache.bbs.controller;
 
 import com.mustache.bbs.domain.Article;
 import com.mustache.bbs.domain.Comment;
-import com.mustache.bbs.dto.ArticleDto;
-import com.mustache.bbs.dto.CommentDto;
+import com.mustache.bbs.domain.dto.ArticleDto;
+import com.mustache.bbs.domain.dto.CommentDto;
 import com.mustache.bbs.repository.ArticleRepository;
 import com.mustache.bbs.repository.CommentRepository;
 import lombok.extern.slf4j.Slf4j;

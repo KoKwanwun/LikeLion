@@ -1,7 +1,7 @@
 package com.mustache.bbs.controller;
 
-import com.mustache.bbs.dto.UserRequest;
-import com.mustache.bbs.dto.UserResponse;
+import com.mustache.bbs.domain.dto.UserRequest;
+import com.mustache.bbs.domain.dto.UserResponse;
 import com.mustache.bbs.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

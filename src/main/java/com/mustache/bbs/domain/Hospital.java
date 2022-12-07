@@ -1,13 +1,12 @@
 package com.mustache.bbs.domain;
 
-import com.mustache.bbs.dto.HospitalResponse;
+import com.mustache.bbs.domain.dto.HospitalResponse;
 import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Timestamp;
 
 @Entity

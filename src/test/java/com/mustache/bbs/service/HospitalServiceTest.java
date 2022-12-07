@@ -1,7 +1,7 @@
 package com.mustache.bbs.service;
 
 import com.mustache.bbs.domain.Hospital;
-import com.mustache.bbs.dto.HospitalResponse;
+import com.mustache.bbs.domain.dto.HospitalResponse;
 import com.mustache.bbs.repository.HospitalRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

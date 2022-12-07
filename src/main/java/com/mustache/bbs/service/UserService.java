@@ -1,8 +1,8 @@
 package com.mustache.bbs.service;
 
 import com.mustache.bbs.domain.User;
-import com.mustache.bbs.dto.UserRequest;
-import com.mustache.bbs.dto.UserResponse;
+import com.mustache.bbs.domain.dto.UserRequest;
+import com.mustache.bbs.domain.dto.UserResponse;
 import com.mustache.bbs.repository.UserRepository;
 import org.springframework.stereotype.Service;
 

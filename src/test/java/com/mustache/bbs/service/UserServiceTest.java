@@ -1,15 +1,13 @@
 package com.mustache.bbs.service;
 
 import com.mustache.bbs.domain.User;
-import com.mustache.bbs.dto.UserRequest;
-import com.mustache.bbs.dto.UserResponse;
+import com.mustache.bbs.domain.dto.UserRequest;
+import com.mustache.bbs.domain.dto.UserResponse;
 import com.mustache.bbs.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
