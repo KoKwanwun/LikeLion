@@ -9,6 +9,10 @@ public class LCS {
 
         int[][] arr = new int[str2.length()][str1.length()];
 
-        System.out.println(Arrays.deepToString(arr));
+        for (int i = 0; i < str2.length(); i++) {
+            for (int j = 0; j < str1.length(); j++) {
+                System.out.printf("i:%s, j:%s\n", str2.charAt(i), str1.charAt(j));
+            }
+        }
     }
 }
