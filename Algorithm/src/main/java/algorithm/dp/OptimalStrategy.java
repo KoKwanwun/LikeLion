@@ -1,6 +1,8 @@
 package algorithm.dp;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 class Pair1 {
     int left;
@@ -29,6 +31,61 @@ class Pair1 {
 }
 
 public class OptimalStrategy {
+    static int maxLeft(Pair1 pair1, Pair1 pair2) {
+        int n = pair1.getLeft();
+        int m = pair2.getLeft();
+
+        if(n > m){
+            return n;
+        } else{
+            return m;
+        }
+    }
+
+    static int minLeft(Pair1 pair1, Pair1 pair2) {
+        int n = pair1.getLeft();
+        int m = pair2.getLeft();
+
+        if(n > m){
+            return m;
+        } else{
+            return n;
+        }
+    }
+
+    static int mode(Pair1 pair1, Pair1 pair2) {
+        List<Integer> list = new ArrayList<>();
+        list.add(pair1.getLeft());
+        list.add(pair1.getRight());
+        list.add(pair2.getLeft());
+        list.add(pair2.getRight());
+
+        for (int i = 0; i < 4; i++) {
+            int num = list.get(i);
+
+            for (int j = i + 1; j < 4; j++) {
+                if(num == list.get(j)){
+                    return num;
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    static int sum(Pair1 pair1, Pair1 pair2, int mode) {
+        int sum = 0;
+
+        sum += pair1.getLeft();
+        sum += pair1.getRight();
+        sum += pair2.getLeft();
+        sum += pair2.getRight();
+
+        sum -= (mode * 2);
+
+        return sum;
+    }
+
     public static void main(String[] args) {
         Pair1[][] dp = new Pair1[4][4];
         int[] arr = {2, 7, 40, 19};
@@ -39,33 +96,29 @@ public class OptimalStrategy {
             }
         }
 
-        for (int i = 0; i < dp.length; i++) {
-            for (int j = i + 1; j < dp[0].length; j++) {
-                int n = dp[i+1][j].getLeft();
-                int m = dp[i][j-1].getLeft();
+        for (int i = 1; i < dp.length; i++) {
+            int j = 0;
 
-                int sum = dp[i+1][j].getRight() + dp[i][j-1].getRight();
-                int max;
-                int min;
+            for (int k = i; k < dp.length; k++) {
+                System.out.println(i + " " + j + " " + k);
 
-                if(n > m){
-                    max = n;
-                    min = m;
+                int max = maxLeft(dp[j+1][k], dp[j][k-1]);
+                int min = minLeft(dp[j+1][k], dp[j][k-1]);
+                int mode = mode(dp[j+1][k], dp[j][k-1]);
+                int sum = sum(dp[j+1][k], dp[j][k-1], mode);
+
+                if(i % 2 == 1) {
+                    dp[j][k] = new Pair1(max, min);
                 } else{
-                    max = m;
-                    min = n;
+                    dp[j][k] = new Pair1(sum, mode);
                 }
 
-                if(j % 2 == 1) {
-                    dp[i][j] = new Pair1(max, min);
-                } else{
-                    dp[i][j] = new Pair1(max, sum);
-                }
-                System.out.println(dp[i][j]);
+                System.out.println(dp[j][k]);
+
+                j++;
             }
         }
 
         System.out.println(Arrays.deepToString(dp));
-
     }
 }
