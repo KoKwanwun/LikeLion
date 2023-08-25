@@ -1,0 +1,45 @@
+{{>layouts/header}}
+<form class="container" action="/hospitals" method="get">
+    <div>
+        <label>지역명</label>
+        {{#keyword}}
+            <input type="text" name="keyword" value="{{keyword}}">
+        {{/keyword}}
+        {{^keyword}}
+            <input type="text" name="keyword">
+        {{/keyword}}
+
+        <button type="submit">조회</button>
+    </div>
+</form>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    {{#hospitals}}
+        <tr>
+            <th>{{id}}</th>
+            <td>{{hospitalName}}</a></td>
+            <td>{{roadNameAddress}}</td>
+        </tr>
+    {{/hospitals}}
+    </tbody>
+</table>
+<div class="d-flex justify-content-center">
+    <ul class="list-group list-group-horizontal">
+        {{#keyword}}
+            <a href="?keyword={{keyword}}&page={{previous}}" class="list-group-item list-group-item-secondary">Previous</a>
+            <a href="?keyword={{keyword}}&page={{next}}" class="list-group-item list-group-item-primary">Next</a>
+        {{/keyword}}
+        {{^keyword}}
+            <a href="?page={{previous}}" class="list-group-item list-group-item-secondary">Previous</a>
+            <a href="?page={{next}}" class="list-group-item list-group-item-primary">Next</a>
+        {{/keyword}}
+    </ul>
+</div>
+{{>layouts/footer}}
